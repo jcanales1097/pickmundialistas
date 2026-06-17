@@ -1,0 +1,80 @@
+{
+  "picks": [
+    {
+      "id": "p001",
+      "partidoId": "m061",
+      "fecha": "2026-06-17",
+      "tipo": "Resultado",
+      "mercado": "Doble Oportunidad",
+      "pick": "Portugal o Empate",
+      "cuota": 1.20,
+      "probabilidad": 88,
+      "confianza": "Alta",
+      "modelo": "v3",
+      "justificacion": "Portugal favorito claro ante un debutante mundialista. Mercado más fiable del modelo v3.",
+      "resultado": null
+    },
+    {
+      "id": "p002",
+      "partidoId": "m062",
+      "fecha": "2026-06-17",
+      "tipo": "Resultado",
+      "mercado": "Doble Oportunidad",
+      "pick": "Colombia o Empate",
+      "cuota": 1.45,
+      "probabilidad": 70,
+      "confianza": "Media",
+      "modelo": "v3",
+      "justificacion": "Colombia con plantilla más experimentada. Factor bloque-contragolpe reduce algo la confianza.",
+      "resultado": null
+    },
+    {
+      "id": "p003",
+      "partidoId": "m067",
+      "fecha": "2026-06-17",
+      "tipo": "Resultado",
+      "mercado": "Doble Oportunidad",
+      "pick": "Inglaterra o Empate",
+      "cuota": 1.22,
+      "probabilidad": 85,
+      "confianza": "Alta",
+      "modelo": "v3",
+      "justificacion": "Inglaterra top FIFA vs Croacia en fase de recambio generacional.",
+      "resultado": null
+    },
+    {
+      "id": "p004",
+      "partidoId": "m068",
+      "fecha": "2026-06-17",
+      "tipo": "Goles",
+      "mercado": "Under 2.5",
+      "pick": "Menos de 2.5 goles",
+      "cuota": 1.85,
+      "probabilidad": 60,
+      "confianza": "Media",
+      "modelo": "v3",
+      "justificacion": "MD1 táctica cautelosa entre Ghana y Panamá, ambos buscarán no exponerse atrás.",
+      "resultado": null
+    }
+  ],
+  "combinadas": [
+    {
+      "id": "c001",
+      "fecha": "2026-06-17",
+      "tipo": "Conservadora",
+      "riesgo": "Bajo",
+      "cuotaCombinada": 1.46,
+      "descripcion": "Portugal/Empate + Inglaterra/Empate — doble oportunidad, el mercado más fiable",
+      "picks": ["p001", "p003"]
+    },
+    {
+      "id": "c002",
+      "fecha": "2026-06-17",
+      "tipo": "Equilibrada",
+      "riesgo": "Medio",
+      "cuotaCombinada": 2.12,
+      "descripcion": "Portugal/Empate + Colombia/Empate + Inglaterra/Empate",
+      "picks": ["p001", "p002", "p003"]
+    }
+  ]
+}
