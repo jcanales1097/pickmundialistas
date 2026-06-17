@@ -4,40 +4,66 @@
 
 ```
 mundial2026/
-├── index.html     ← Página pública (calendario, picks, combinadas, stats)
-├── admin.html     ← Panel administrativo (cargar picks, resultados, modelo)
-└── data.js        ← Base de datos compartida con todos los picks
+├── index.html     ← Página pública (calendario oficial, picks, combinadas, stats)
+├── admin.html      ← Panel administrativo (solo carga de archivo JSON)
+├── data.js         ← Calendario oficial de los 72 partidos de fase de grupos
+└── picks.json      ← Picks y combinadas actuales (lo reemplazas al actualizar)
 ```
 
-## Cómo usar
+## Cómo funciona
 
-### Vista pública (index.html)
-- Muestra picks ordenados por fecha con filtros
-- Calendario de partidos con resultados
-- Combinadas por tipo de riesgo
-- Estadísticas del modelo con tasa de acierto
+### Calendario
+El calendario de partidos viene precargado con el fixture oficial del Mundial 2026
+(fase de grupos, 72 partidos, 12 grupos). No necesitas cargarlo a mano.
 
-### Panel admin (admin.html)
-1. **Agregar picks**: sección "Gestionar Picks" → tab "+ Nuevo Pick"
-2. **Cargar resultados de picks**: tab "Cargar Resultados"
-3. **Resultados de partidos**: sección "Resultados"
-4. **Exportar**: botón "Exportar JSON" genera un nuevo data.js
+### Resultados
+Los resultados de los partidos se sincronizan **automáticamente** desde una fuente
+pública (openfootball/worldcup.json) cada vez que alguien visita el sitio, y se
+refrescan cada 5 minutos mientras la página está abierta. No se cargan a mano.
 
-## Flujo de trabajo recomendado
+### Picks y combinadas
+1. Pide los picks al chat — te entregará un archivo `picks.json` listo para descargar.
+2. Abre `admin.html` y sube ese archivo (arrastra o haz clic en el recuadro).
+3. Revisa la vista previa de los picks cargados.
+4. Descarga el `picks.json` actualizado con el botón correspondiente.
+5. Sube ese archivo `picks.json` a la raíz de tu repositorio en GitHub, junto a
+   `index.html` (reemplazando el anterior).
+6. El sitio público lee automáticamente `picks.json` y muestra los picks actualizados.
 
-1. Abrir `admin.html`
-2. Agregar picks del día en "+ Nuevo Pick"
-3. Crear combinadas en "Gestionar Combinadas"
-4. Al terminar el partido, cargar el resultado en "Resultados"
-5. Marcar picks como acertados/fallidos en "Cargar Resultados"
-6. Exportar `data.js` actualizado
-7. Reemplazar el `data.js` del servidor con el exportado
+## Formato de picks.json
 
-## Modelo activo: v3 (desde 15 Jun 2026)
-- BTTS eliminado de picks principales
-- Over 4.5 directo cuando gap FIFA >80
-- Factor bloque-contragolpe +8% (MD1, gap >30)
-- Under MD1 solo con ≥6 partidos sin conceder
-- Doble Oportunidad priorizada (100% tasa)
+```json
+{
+  "picks": [
+    {
+      "id": "p001",
+      "partidoId": "m001",
+      "fecha": "2026-06-17",
+      "tipo": "Resultado",
+      "mercado": "Doble Oportunidad",
+      "pick": "Portugal o Empate",
+      "cuota": 1.25,
+      "probabilidad": 82,
+      "confianza": "Alta",
+      "modelo": "v3",
+      "justificacion": "Texto breve del razonamiento",
+      "resultado": null
+    }
+  ],
+  "combinadas": [
+    {
+      "id": "c001",
+      "fecha": "2026-06-17",
+      "tipo": "Conservadora",
+      "riesgo": "Bajo",
+      "cuotaCombinada": 2.10,
+      "descripcion": "Texto descriptivo",
+      "picks": ["p001", "p002"]
+    }
+  ]
+}
+```
+
+`partidoId` debe coincidir con un ID del calendario oficial (m001 a m072).
 
 ## Desarrollado por JCANALES
