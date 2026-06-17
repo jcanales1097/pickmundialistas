@@ -130,43 +130,6 @@
     cursor: pointer; float: right;
   }
   .copy-btn:hover { color: var(--verde); border-color: var(--borde-hover); }
-
-  .res-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-  .res-table th {
-    text-align: left; padding: 8px 10px; font-size: 10px; font-weight: 600;
-    letter-spacing: 1px; text-transform: uppercase; color: var(--texto3);
-    border-bottom: 1px solid var(--borde);
-  }
-  .res-table td { padding: 10px; border-bottom: 1px solid rgba(255,255,255,0.04); color: var(--texto2); vertical-align: middle; }
-  .res-table tr:last-child td { border-bottom: none; }
-  .res-table tr:hover td { background: rgba(255,255,255,0.02); }
-
-  .res-pick-name { color: var(--texto); font-weight: 500; }
-  .res-meta { font-size: 11px; color: var(--texto3); margin-top: 2px; }
-
-  .res-badge {
-    font-size: 10px; font-weight: 700; padding: 3px 9px;
-    border-radius: 4px; letter-spacing: 0.5px; display: inline-block;
-  }
-  .res-pendiente { background: rgba(255,214,0,0.1); color: var(--oro); }
-  .res-acertado { background: rgba(0,200,83,0.12); color: var(--verde); }
-  .res-fallido { background: rgba(229,57,53,0.12); color: var(--rojo); }
-
-  .res-actions { display: flex; gap: 6px; }
-  .btn-res {
-    font-size: 11px; padding: 5px 10px; border-radius: 6px;
-    border: 1px solid var(--borde); background: var(--fondo3); cursor: pointer;
-    transition: all 0.15s; color: var(--texto2);
-  }
-  .btn-res:hover { border-color: var(--borde-hover); }
-  .btn-res.ok { color: var(--verde); }
-  .btn-res.ok:hover { background: rgba(0,200,83,0.1); border-color: var(--verde); }
-  .btn-res.bad { color: var(--rojo); }
-  .btn-res.bad:hover { background: rgba(229,57,53,0.1); border-color: var(--rojo); }
-  .btn-res.active-ok { background: rgba(0,200,83,0.15); border-color: var(--verde); color: var(--verde); }
-  .btn-res.active-bad { background: rgba(229,57,53,0.15); border-color: var(--rojo); color: var(--rojo); }
-
-  .empty-row { text-align: center; padding: 24px; color: var(--texto3); font-size: 12px; }
 </style>
 </head>
 <body>
@@ -218,21 +181,6 @@
 
   <div class="panel">
     <div class="panel-header">
-      <div class="panel-title">Marcar resultados de picks</div>
-      <div class="panel-sub">El marcador del partido se sincroniza solo, pero si un pick (ej. "México o Empate") acertó o falló depende del mercado — márcalo aquí una vez termine el partido para que las estadísticas del sitio se calculen correctamente.</div>
-    </div>
-    <div class="panel-body">
-      <div class="toolbar" style="margin-bottom:1rem">
-        <select id="filterFechaResultados" style="padding:8px 12px;border-radius:8px;border:1px solid var(--borde);background:var(--fondo3);color:var(--texto);font-size:13px">
-          <option value="">Todas las fechas</option>
-        </select>
-      </div>
-      <div id="resultsTableContainer"></div>
-    </div>
-  </div>
-
-  <div class="panel">
-    <div class="panel-header">
       <div class="panel-title">Cómo publicar los picks</div>
     </div>
     <div class="panel-body">
@@ -250,11 +198,7 @@
       </div>
       <div class="step">
         <div class="step-num">4</div>
-        <div class="step-text">Una vez termine cada partido, marca cada pick como ✓ Acertado o ✗ Fallido en la sección de arriba — esto es lo que alimenta la tasa de acierto y estadísticas del sitio.</div>
-      </div>
-      <div class="step">
-        <div class="step-num">5</div>
-        <div class="step-text">Descarga el <strong>picks.json</strong> actualizado y súbelo a tu repositorio de GitHub (en la misma carpeta que index.html) para publicar los cambios. El marcador del partido (no el acierto del pick) sí se sincroniza automáticamente en el calendario.</div>
+        <div class="step-text">Descarga el <strong>picks.json</strong> con el botón correspondiente y súbelo a tu repositorio de GitHub (en la misma carpeta que index.html) para publicar los cambios. El marcador de cada partido se sincroniza automáticamente en el calendario.</div>
       </div>
     </div>
   </div>
@@ -328,121 +272,7 @@ function saveState() {
   localStorage.setItem('mundial2026_picks_data', JSON.stringify(appData));
   renderStats();
   renderPreview();
-  renderResultsTable();
-  buildFechaFilter();
 }
-
-function getPartido(id) {
-  return (MUNDIAL_DATA.partidosOficiales || []).find(p => p.id === id);
-}
-
-async function syncResultadosAdmin() {
-  try {
-    const res = await fetch('https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json', { cache: 'no-store' });
-    if (!res.ok) throw new Error('no ok');
-    const data = await res.json();
-
-    const ENG_TO_ES = {
-      "Mexico":"México","South Africa":"Sudáfrica","South Korea":"Corea del Sur","Czech Republic":"Chequia",
-      "Canada":"Canadá","Bosnia & Herzegovina":"Bosnia y Herzegovina","Qatar":"Catar","Switzerland":"Suiza",
-      "Brazil":"Brasil","Morocco":"Marruecos","Haiti":"Haití","Scotland":"Escocia",
-      "USA":"Estados Unidos","Paraguay":"Paraguay","Australia":"Australia","Turkey":"Turquía",
-      "Germany":"Alemania","Curaçao":"Curazao","Ivory Coast":"Costa de Marfil","Ecuador":"Ecuador",
-      "Netherlands":"Países Bajos","Japan":"Japón","Sweden":"Suecia","Tunisia":"Túnez",
-      "Belgium":"Bélgica","Egypt":"Egipto","Iran":"Irán","New Zealand":"Nueva Zelanda",
-      "Spain":"España","Cape Verde":"Cabo Verde","Saudi Arabia":"Arabia Saudita","Uruguay":"Uruguay",
-      "France":"Francia","Iraq":"Irak","Norway":"Noruega","Senegal":"Senegal",
-      "Algeria":"Argelia","Argentina":"Argentina","Austria":"Austria","Jordan":"Jordania",
-      "Colombia":"Colombia","DR Congo":"RD Congo","Portugal":"Portugal","Uzbekistan":"Uzbekistán",
-      "Croatia":"Croacia","England":"Inglaterra","Ghana":"Ghana","Panama":"Panamá"
-    };
-
-    (MUNDIAL_DATA.partidosOficiales || []).forEach(p => {
-      if (p.resultado) return;
-      const match = data.matches.find(m => {
-        if (!m.score || !m.score.ft) return false;
-        const localEs = ENG_TO_ES[m.team1] || m.team1;
-        const visEs = ENG_TO_ES[m.team2] || m.team2;
-        return m.date === p.fecha && localEs === p.local && visEs === p.visitante;
-      });
-      if (match) {
-        p.resultado = { local: match.score.ft[0], visitante: match.score.ft[1] };
-      }
-    });
-  } catch (e) {
-    // sin conexión, se omite — la tabla mostrará "Sin marcador aún"
-  }
-}
-
-function buildFechaFilter() {
-  const sel = document.getElementById('filterFechaResultados');
-  const current = sel.value;
-  const dates = [...new Set(appData.picks.map(p => p.fecha))].sort();
-  sel.innerHTML = '<option value="">Todas las fechas</option>' +
-    dates.map(d => `<option value="${d}">${d}</option>`).join('');
-  if (dates.includes(current)) sel.value = current;
-}
-
-function renderResultsTable() {
-  const container = document.getElementById('resultsTableContainer');
-  const filterFecha = document.getElementById('filterFechaResultados').value;
-
-  let picks = appData.picks;
-  if (filterFecha) picks = picks.filter(p => p.fecha === filterFecha);
-
-  if (!picks.length) {
-    container.innerHTML = '<div class="empty-row">No hay picks para mostrar.</div>';
-    return;
-  }
-
-  const rows = picks.map(p => {
-    const partido = getPartido(p.partidoId);
-    const nombrePartido = partido ? `${partido.local} vs ${partido.visitante}` : p.partidoId;
-    const marcador = partido && partido.resultado
-      ? `${partido.resultado.local} - ${partido.resultado.visitante}`
-      : 'Sin marcador aún';
-
-    let badge = '<span class="res-badge res-pendiente">PENDIENTE</span>';
-    if (p.resultado === true) badge = '<span class="res-badge res-acertado">✓ ACERTADO</span>';
-    if (p.resultado === false) badge = '<span class="res-badge res-fallido">✗ FALLIDO</span>';
-
-    return `
-      <tr>
-        <td>
-          <div class="res-pick-name">${p.pick}</div>
-          <div class="res-meta">${nombrePartido} · ${p.mercado} · ${p.fecha} · ${marcador}</div>
-        </td>
-        <td>${badge}</td>
-        <td>
-          <div class="res-actions">
-            <button class="btn-res ok ${p.resultado === true ? 'active-ok' : ''}" onclick="markResult('${p.id}', true)">✓ Acertado</button>
-            <button class="btn-res bad ${p.resultado === false ? 'active-bad' : ''}" onclick="markResult('${p.id}', false)">✗ Fallido</button>
-            <button class="btn-res" onclick="markResult('${p.id}', null)">— Limpiar</button>
-          </div>
-        </td>
-      </tr>
-    `;
-  }).join('');
-
-  container.innerHTML = `
-    <table class="res-table">
-      <thead><tr><th>Pick</th><th>Estado</th><th>Marcar</th></tr></thead>
-      <tbody>${rows}</tbody>
-    </table>
-  `;
-}
-
-function markResult(pickId, value) {
-  const pick = appData.picks.find(p => p.id === pickId);
-  if (!pick) return;
-  pick.resultado = value;
-  localStorage.setItem('mundial2026_picks_data', JSON.stringify(appData));
-  renderResultsTable();
-  renderStats();
-  toast(value === true ? '✓ Marcado como acertado' : value === false ? '✗ Marcado como fallido' : 'Resultado limpiado');
-}
-
-document.getElementById('filterFechaResultados').addEventListener('change', renderResultsTable);
 
 function validateData(data) {
   if (!data || typeof data !== 'object') return 'El archivo no contiene un objeto JSON válido';
@@ -550,9 +380,6 @@ function clearData() {
 
 renderStats();
 renderPreview();
-buildFechaFilter();
-renderResultsTable();
-syncResultadosAdmin().then(() => renderResultsTable());
 </script>
 </body>
 </html>
