@@ -13,7 +13,6 @@
     --verde-dark: #00962c;
     --oro: #FFD600;
     --rojo: #E53935;
-    --azul: #1565C0;
     --fondo: #0a0e1a;
     --fondo2: #111827;
     --fondo3: #1c2336;
@@ -34,7 +33,6 @@
     min-height: 100vh;
   }
 
-  /* ── HEADER ── */
   header {
     background: linear-gradient(135deg, #0a0e1a 0%, #0d1a3a 50%, #0a1628 100%);
     border-bottom: 1px solid rgba(0, 200, 83, 0.25);
@@ -54,11 +52,7 @@
     height: 64px;
   }
 
-  .logo {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
+  .logo { display: flex; align-items: center; gap: 12px; }
 
   .logo-badge {
     background: var(--verde);
@@ -71,41 +65,20 @@
     line-height: 1;
   }
 
-  .logo-text {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 22px;
-    letter-spacing: 2px;
-    color: var(--texto);
-  }
-
-  .logo-sub {
-    font-size: 10px;
-    color: var(--verde);
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    margin-top: -2px;
-  }
+  .logo-text { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 2px; }
+  .logo-sub { font-size: 10px; color: var(--verde); letter-spacing: 3px; text-transform: uppercase; margin-top: -2px; }
 
   nav { display: flex; gap: 4px; }
-
   nav button {
-    background: transparent;
-    border: none;
-    color: var(--texto2);
-    font-family: 'Inter', sans-serif;
-    font-size: 13px;
-    font-weight: 500;
-    padding: 8px 16px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.2s;
-    letter-spacing: 0.5px;
+    background: transparent; border: none; color: var(--texto2);
+    font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500;
+    padding: 8px 16px; border-radius: 8px; cursor: pointer;
+    transition: all 0.2s; letter-spacing: 0.5px;
   }
-
   nav button:hover { background: rgba(255,255,255,0.06); color: var(--texto); }
   nav button.active { background: rgba(0,200,83,0.12); color: var(--verde); }
 
-  .model-badge {
+  .sync-badge {
     font-size: 11px;
     background: rgba(0,200,83,0.1);
     color: var(--verde);
@@ -114,9 +87,20 @@
     border-radius: 20px;
     font-weight: 600;
     letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: default;
   }
 
-  /* ── HERO ── */
+  .sync-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--verde);
+    animation: pulse-dot 2s infinite;
+  }
+
+  @keyframes pulse-dot { 0%,100% { opacity:1 } 50% { opacity: 0.35 } }
+
   .hero {
     background: linear-gradient(180deg, #0d1a3a 0%, var(--fondo) 100%);
     padding: 3rem 1.5rem 2rem;
@@ -129,76 +113,33 @@
     font-size: clamp(48px, 8vw, 96px);
     letter-spacing: 4px;
     line-height: 0.9;
-    color: var(--texto);
   }
 
   .hero h1 span { color: var(--verde); }
 
   .hero-sub {
-    font-size: 13px;
-    color: var(--texto2);
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    margin-top: 12px;
+    font-size: 13px; color: var(--texto2); letter-spacing: 4px;
+    text-transform: uppercase; margin-top: 12px;
   }
 
-  .hero-stats {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    margin-top: 2rem;
-    flex-wrap: wrap;
-  }
+  .hero-stats { display: flex; justify-content: center; gap: 2rem; margin-top: 2rem; flex-wrap: wrap; }
+  .hero-stat { text-align: center; }
+  .hero-stat .val { font-family: 'Bebas Neue', sans-serif; font-size: 36px; color: var(--verde); line-height: 1; }
+  .hero-stat .lbl { font-size: 11px; color: var(--texto3); letter-spacing: 2px; text-transform: uppercase; margin-top: 4px; }
 
-  .hero-stat {
-    text-align: center;
-  }
-
-  .hero-stat .val {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 36px;
-    color: var(--verde);
-    line-height: 1;
-  }
-
-  .hero-stat .lbl {
-    font-size: 11px;
-    color: var(--texto3);
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-top: 4px;
-  }
-
-  /* ── MAIN ── */
-  main {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem 1.5rem;
-  }
+  main { max-width: 1200px; margin: 0 auto; padding: 2rem 1.5rem; }
 
   .tab-panel { display: none; }
   .tab-panel.active { display: block; }
 
-  /* ── SECTION TITLE ── */
   .section-title {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 28px;
-    letter-spacing: 2px;
-    color: var(--texto);
+    font-size: 28px; letter-spacing: 2px;
     margin-bottom: 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 12px;
+    display: flex; align-items: center; gap: 12px;
   }
+  .section-title::after { content: ''; flex: 1; height: 1px; background: var(--borde); }
 
-  .section-title::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--borde);
-  }
-
-  /* ── DATE HEADER ── */
   .date-header {
     background: var(--fondo3);
     border: 1px solid var(--borde);
@@ -211,19 +152,9 @@
     justify-content: space-between;
   }
 
-  .date-label {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 20px;
-    letter-spacing: 2px;
-    color: var(--verde);
-  }
+  .date-label { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 2px; color: var(--verde); }
+  .date-count { font-size: 12px; color: var(--texto3); }
 
-  .date-count {
-    font-size: 12px;
-    color: var(--texto3);
-  }
-
-  /* ── PARTIDO CARD ── */
   .partido-card {
     background: var(--fondo2);
     border: 1px solid var(--borde);
@@ -232,112 +163,47 @@
     overflow: hidden;
     transition: border-color 0.2s;
   }
-
   .partido-card:hover { border-color: rgba(0,200,83,0.25); }
 
   .partido-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 12px 16px;
-    border-bottom: 1px solid var(--borde);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 16px; border-bottom: 1px solid var(--borde);
     background: rgba(255,255,255,0.02);
   }
 
-  .partido-meta {
-    font-size: 11px;
-    color: var(--texto3);
-    display: flex;
-    gap: 8px;
-    align-items: center;
-  }
-
+  .partido-meta { font-size: 11px; color: var(--texto3); display: flex; gap: 8px; align-items: center; }
   .partido-meta span { display: flex; align-items: center; gap: 4px; }
 
   .grupo-tag {
-    background: rgba(0,200,83,0.1);
-    color: var(--verde);
-    font-size: 10px;
-    font-weight: 600;
-    padding: 2px 8px;
-    border-radius: 4px;
-    letter-spacing: 1px;
+    background: rgba(0,200,83,0.1); color: var(--verde);
+    font-size: 10px; font-weight: 600; padding: 2px 8px;
+    border-radius: 4px; letter-spacing: 1px;
   }
 
   .partido-body {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    align-items: center;
-    padding: 20px 24px;
-    gap: 16px;
+    display: grid; grid-template-columns: 1fr auto 1fr;
+    align-items: center; padding: 20px 24px; gap: 16px;
   }
 
-  .equipo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-  }
+  .equipo { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .equipo-nombre { font-weight: 600; font-size: 15px; text-align: center; }
+  .equipo-flag { font-size: 32px; line-height: 1; }
 
-  .equipo-nombre {
-    font-weight: 600;
-    font-size: 15px;
-    text-align: center;
-  }
-
-  .equipo-flag {
-    font-size: 32px;
-    line-height: 1;
-  }
-
-  .marcador {
-    text-align: center;
-    min-width: 80px;
-  }
-
-  .marcador-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 40px;
-    letter-spacing: 4px;
-    color: var(--texto);
-    line-height: 1;
-  }
-
-  .marcador-vs {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 22px;
-    color: var(--texto3);
-    letter-spacing: 2px;
-  }
-
-  .marcador-hora {
-    font-size: 12px;
-    color: var(--texto2);
-    margin-top: 4px;
-  }
+  .marcador { text-align: center; min-width: 80px; }
+  .marcador-num { font-family: 'Bebas Neue', sans-serif; font-size: 40px; letter-spacing: 4px; line-height: 1; }
+  .marcador-vs { font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: var(--texto3); letter-spacing: 2px; }
+  .marcador-hora { font-size: 12px; color: var(--texto2); margin-top: 4px; }
 
   .marcador-status {
-    display: inline-block;
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    padding: 2px 8px;
-    border-radius: 4px;
-    margin-top: 6px;
+    display: inline-block; font-size: 10px; font-weight: 600;
+    letter-spacing: 1px; padding: 2px 8px; border-radius: 4px; margin-top: 6px;
   }
-
   .status-pendiente { background: rgba(255,214,0,0.1); color: var(--oro); }
   .status-finalizado { background: rgba(0,200,83,0.1); color: var(--verde); }
-  .status-en-juego { background: rgba(229,57,53,0.1); color: var(--rojo); animation: pulse 1s infinite; }
 
-  @keyframes pulse { 0%,100% { opacity:1 } 50% { opacity: 0.5 } }
-
-  /* ── PICKS SECTION ── */
   .picks-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1rem;
-    margin-bottom: 1rem;
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem; margin-bottom: 1rem;
   }
 
   .pick-card {
@@ -349,313 +215,99 @@
     overflow: hidden;
     transition: transform 0.2s, border-color 0.2s;
   }
-
   .pick-card:hover { transform: translateY(-2px); border-color: rgba(0,200,83,0.3); }
-
-  .pick-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 3px; height: 100%;
-    background: var(--verde);
-  }
-
+  .pick-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--verde); }
   .pick-card.confianza-alta::before { background: var(--verde); }
   .pick-card.confianza-media::before { background: var(--oro); }
 
-  .pick-card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 10px;
-  }
-
-  .pick-partido {
-    font-size: 12px;
-    color: var(--texto2);
-    font-weight: 500;
-  }
-
-  .pick-confianza {
-    font-size: 10px;
-    font-weight: 700;
-    padding: 3px 8px;
-    border-radius: 4px;
-    letter-spacing: 1px;
-  }
-
+  .pick-card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+  .pick-partido { font-size: 12px; color: var(--texto2); font-weight: 500; }
+  .pick-confianza { font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 4px; letter-spacing: 1px; }
   .alta { background: rgba(0,200,83,0.12); color: var(--verde); border: 1px solid rgba(0,200,83,0.3); }
   .media { background: rgba(255,214,0,0.12); color: var(--oro); border: 1px solid rgba(255,214,0,0.3); }
 
-  .pick-mercado {
-    font-size: 10px;
-    color: var(--texto3);
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    margin-bottom: 6px;
-  }
+  .pick-mercado { font-size: 10px; color: var(--texto3); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; }
+  .pick-valor { font-size: 18px; font-weight: 700; margin-bottom: 10px; line-height: 1.2; }
 
-  .pick-valor {
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--texto);
-    margin-bottom: 10px;
-    line-height: 1.2;
-  }
+  .pick-prob-bar { height: 4px; background: rgba(255,255,255,0.08); border-radius: 2px; margin: 8px 0; overflow: hidden; }
+  .pick-prob-fill { height: 100%; background: var(--verde); border-radius: 2px; transition: width 0.8s ease; }
 
-  .pick-prob-bar {
-    height: 4px;
-    background: rgba(255,255,255,0.08);
-    border-radius: 2px;
-    margin: 8px 0;
-    overflow: hidden;
-  }
-
-  .pick-prob-fill {
-    height: 100%;
-    background: var(--verde);
-    border-radius: 2px;
-    transition: width 0.8s ease;
-  }
-
-  .pick-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 10px;
-  }
-
+  .pick-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; }
   .pick-cuota {
-    background: rgba(0,200,83,0.08);
-    color: var(--verde);
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 22px;
-    letter-spacing: 1px;
-    padding: 2px 8px;
-    border-radius: 6px;
+    background: rgba(0,200,83,0.08); color: var(--verde);
+    font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px;
+    padding: 2px 8px; border-radius: 6px;
   }
-
-  .pick-prob-label {
-    font-size: 12px;
-    color: var(--texto3);
-  }
+  .pick-prob-label { font-size: 12px; color: var(--texto3); }
 
   .pick-just {
-    font-size: 11px;
-    color: var(--texto2);
-    margin-top: 8px;
-    padding-top: 8px;
-    border-top: 1px solid var(--borde);
-    line-height: 1.5;
+    font-size: 11px; color: var(--texto2); margin-top: 8px;
+    padding-top: 8px; border-top: 1px solid var(--borde); line-height: 1.5;
   }
 
-  .pick-resultado {
-    display: inline-block;
-    font-size: 10px;
-    font-weight: 700;
-    padding: 2px 8px;
-    border-radius: 4px;
-    letter-spacing: 1px;
-    margin-top: 6px;
-  }
-
+  .pick-resultado { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 4px; letter-spacing: 1px; margin-top: 6px; }
   .resultado-verde { background: rgba(0,200,83,0.15); color: var(--verde); }
   .resultado-rojo { background: rgba(229,57,53,0.15); color: var(--rojo); }
 
-  /* ── COMBINADAS ── */
   .combinada-card {
-    background: var(--fondo2);
-    border: 1px solid var(--borde);
-    border-radius: var(--radio-lg);
-    padding: 18px;
-    margin-bottom: 12px;
+    background: var(--fondo2); border: 1px solid var(--borde);
+    border-radius: var(--radio-lg); padding: 18px; margin-bottom: 12px;
     transition: border-color 0.2s;
   }
-
   .combinada-card:hover { border-color: rgba(255,214,0,0.25); }
+  .combinada-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+  .combinada-tipo { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 1px; }
 
-  .combinada-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 12px;
-  }
-
-  .combinada-tipo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 20px;
-    letter-spacing: 1px;
-  }
-
-  .riesgo-tag {
-    font-size: 11px;
-    font-weight: 600;
-    padding: 3px 10px;
-    border-radius: 5px;
-    letter-spacing: 1px;
-  }
-
+  .riesgo-tag { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 5px; letter-spacing: 1px; }
   .riesgo-bajo { background: rgba(0,200,83,0.1); color: var(--verde); border: 1px solid rgba(0,200,83,0.25); }
   .riesgo-medio { background: rgba(255,214,0,0.1); color: var(--oro); border: 1px solid rgba(255,214,0,0.25); }
   .riesgo-alto { background: rgba(229,57,53,0.1); color: var(--rojo); border: 1px solid rgba(229,57,53,0.25); }
 
-  .combinada-desc {
-    font-size: 13px;
-    color: var(--texto2);
-    margin-bottom: 12px;
-    line-height: 1.5;
-  }
+  .combinada-desc { font-size: 13px; color: var(--texto2); margin-bottom: 12px; line-height: 1.5; }
+  .combinada-cuota-big { font-family: 'Bebas Neue', sans-serif; font-size: 40px; color: var(--oro); letter-spacing: 2px; line-height: 1; }
+  .combinada-cuota-label { font-size: 11px; color: var(--texto3); letter-spacing: 1px; }
 
-  .combinada-cuota-big {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 40px;
-    color: var(--oro);
-    letter-spacing: 2px;
-    line-height: 1;
-  }
+  .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 2rem; }
+  .stat-box { background: var(--fondo2); border: 1px solid var(--borde); border-radius: var(--radio); padding: 16px; text-align: center; }
+  .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 36px; line-height: 1; color: var(--verde); }
+  .stat-lbl { font-size: 11px; color: var(--texto3); letter-spacing: 1.5px; text-transform: uppercase; margin-top: 4px; }
 
-  .combinada-cuota-label {
-    font-size: 11px;
-    color: var(--texto3);
-    letter-spacing: 1px;
-  }
-
-  /* ── STATS ── */
-  .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 12px;
-    margin-bottom: 2rem;
-  }
-
-  .stat-box {
-    background: var(--fondo2);
-    border: 1px solid var(--borde);
-    border-radius: var(--radio);
-    padding: 16px;
-    text-align: center;
-  }
-
-  .stat-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 36px;
-    line-height: 1;
-    color: var(--verde);
-  }
-
-  .stat-lbl {
-    font-size: 11px;
-    color: var(--texto3);
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    margin-top: 4px;
-  }
-
-  /* ── FILTER BAR ── */
-  .filter-bar {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 1.5rem;
-    flex-wrap: wrap;
-  }
-
+  .filter-bar { display: flex; gap: 8px; margin-bottom: 1.5rem; flex-wrap: wrap; }
   .filter-btn {
-    background: var(--fondo2);
-    border: 1px solid var(--borde);
-    color: var(--texto2);
-    font-family: 'Inter', sans-serif;
-    font-size: 12px;
-    font-weight: 500;
-    padding: 7px 14px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.2s;
+    background: var(--fondo2); border: 1px solid var(--borde); color: var(--texto2);
+    font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 500;
+    padding: 7px 14px; border-radius: 8px; cursor: pointer; transition: all 0.2s;
   }
-
   .filter-btn:hover { border-color: rgba(0,200,83,0.3); color: var(--texto); }
   .filter-btn.active { background: rgba(0,200,83,0.1); border-color: var(--verde); color: var(--verde); }
 
-  /* ── FOOTER ── */
-  footer {
-    text-align: center;
-    padding: 2.5rem 1.5rem;
-    border-top: 1px solid var(--borde);
-    margin-top: 4rem;
-  }
-
-  .footer-brand {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 18px;
-    letter-spacing: 4px;
-    color: var(--texto2);
-  }
-
+  footer { text-align: center; padding: 2.5rem 1.5rem; border-top: 1px solid var(--borde); margin-top: 4rem; }
+  .footer-brand { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 4px; color: var(--texto2); }
   .footer-brand span { color: var(--verde); }
-
-  .footer-sub {
-    font-size: 11px;
-    color: var(--texto3);
-    margin-top: 6px;
-    letter-spacing: 2px;
-  }
-
+  .footer-sub { font-size: 11px; color: var(--texto3); margin-top: 6px; letter-spacing: 2px; }
   .footer-model {
-    display: inline-block;
-    font-size: 10px;
-    color: var(--verde);
-    background: rgba(0,200,83,0.08);
-    border: 1px solid rgba(0,200,83,0.2);
-    padding: 3px 10px;
-    border-radius: 4px;
-    margin-top: 8px;
-    letter-spacing: 1px;
+    display: inline-block; font-size: 10px; color: var(--verde);
+    background: rgba(0,200,83,0.08); border: 1px solid rgba(0,200,83,0.2);
+    padding: 3px 10px; border-radius: 4px; margin-top: 8px; letter-spacing: 1px;
   }
 
-  /* ── RESPONSIVE ── */
+  .empty-state { text-align: center; padding: 3rem; color: var(--texto3); font-size: 13px; }
+  .empty-icon { font-size: 36px; margin-bottom: 12px; }
+
+  .picks-partido-label {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 2px;
+    color: var(--texto3); margin-bottom: 8px; padding-left: 2px;
+  }
+
   @media (max-width: 640px) {
     nav { display: none; }
     .partido-body { padding: 16px; gap: 8px; }
     .equipo-flag { font-size: 24px; }
     .equipo-nombre { font-size: 13px; }
     .marcador-num { font-size: 28px; }
-    .mobile-nav {
-      display: flex;
-      overflow-x: auto;
-      gap: 8px;
-      padding: 10px 16px;
-      border-bottom: 1px solid var(--borde);
-      background: var(--fondo2);
-    }
+    .mobile-nav { display: flex; overflow-x: auto; gap: 8px; padding: 10px 16px; border-bottom: 1px solid var(--borde); background: var(--fondo2); }
   }
-
-  @media (min-width: 641px) {
-    .mobile-nav { display: none; }
-  }
-
-  .picks-partido-label {
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: var(--texto3);
-    margin-bottom: 8px;
-    padding-left: 2px;
-  }
-
-  .empty-state {
-    text-align: center;
-    padding: 3rem;
-    color: var(--texto3);
-    font-size: 13px;
-  }
-
-  .empty-icon { font-size: 36px; margin-bottom: 12px; }
-
-  .tooltip {
-    position: relative;
-    cursor: help;
-  }
-
-  .divider { height: 1px; background: var(--borde); margin: 2rem 0; }
+  @media (min-width: 641px) { .mobile-nav { display: none; } }
 </style>
 </head>
 <body>
@@ -675,7 +327,7 @@
       <button onclick="showTab('calendario')">Calendario</button>
       <button onclick="showTab('estadisticas')">Estadísticas</button>
     </nav>
-    <span class="model-badge" id="modelBadge">Modelo v3</span>
+    <span class="sync-badge" id="syncBadge" title="Resultados sincronizados automáticamente"><span class="sync-dot"></span> Resultados en vivo</span>
   </div>
 </header>
 
@@ -689,52 +341,42 @@
 <div class="hero">
   <h1>MUNDIAL<br><span>2026</span></h1>
   <div class="hero-sub">Picks profesionales · Modelo estadístico v3</div>
-  <div class="hero-stats" id="heroStats">
-    <div class="hero-stat"><div class="val" id="totalPicksHero">20</div><div class="lbl">Total Picks</div></div>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="val" id="totalPicksHero">0</div><div class="lbl">Total Picks</div></div>
     <div class="hero-stat"><div class="val" id="aciertosHero">—</div><div class="lbl">Aciertos</div></div>
     <div class="hero-stat"><div class="val" id="tasaHero">—%</div><div class="lbl">Tasa Global</div></div>
-    <div class="hero-stat"><div class="val" id="combinadasHero">5</div><div class="lbl">Combinadas</div></div>
+    <div class="hero-stat"><div class="val" id="combinadasHero">0</div><div class="lbl">Combinadas</div></div>
   </div>
 </div>
 
 <main>
 
-  <!-- PICKS -->
   <div id="tab-picks" class="tab-panel active">
     <div class="section-title">Picks del día</div>
-
     <div class="filter-bar" id="filterBar">
       <button class="filter-btn active" onclick="filterPicks('all', this)">Todos</button>
     </div>
-
     <div id="picksContainer"></div>
   </div>
 
-  <!-- COMBINADAS -->
   <div id="tab-combinadas" class="tab-panel">
     <div class="section-title">Apuestas Combinadas</div>
     <div id="combinadasContainer"></div>
   </div>
 
-  <!-- CALENDARIO -->
   <div id="tab-calendario" class="tab-panel">
-    <div class="section-title">Calendario & Resultados</div>
+    <div class="section-title">Calendario & Resultados — Fase de grupos</div>
     <div class="filter-bar" id="calFilterBar">
       <button class="filter-btn active" onclick="filterCal('all', this)">Todos</button>
     </div>
     <div id="calendarioContainer"></div>
   </div>
 
-  <!-- ESTADÍSTICAS -->
   <div id="tab-estadisticas" class="tab-panel">
     <div class="section-title">Rendimiento del Modelo</div>
     <div class="stats-grid" id="statsGrid"></div>
-
     <div class="section-title" style="margin-top:2rem">Detalle por mercado</div>
     <div id="mercadoStats"></div>
-
-    <div class="section-title" style="margin-top:2rem">Correcciones activas (v3)</div>
-    <div id="correccionesContainer"></div>
   </div>
 
 </main>
@@ -742,24 +384,24 @@
 <footer>
   <div class="footer-brand">Desarrollado por <span>JCANALES</span></div>
   <div class="footer-sub">Análisis estadístico · No es consejo de inversión</div>
-  <div class="footer-model" id="footerModel">Modelo de predicción v3 — activo desde 15 Jun 2026</div>
+  <div class="footer-model" id="footerModel">Calendario oficial Mundial 2026 · Resultados sincronizados automáticamente</div>
 </footer>
 
 <script src="data.js"></script>
 <script>
-// ── HELPERS ──
 const FLAGS = {
-  "México":"🇲🇽","Bolivia":"🇧🇴","Senegal":"🇸🇳","Australia":"🇦🇺",
-  "Argentina":"🇦🇷","Chile":"🇨🇱","Colombia":"🇨🇴","Panamá":"🇵🇦",
-  "Brasil":"🇧🇷","Nigeria":"🇳🇬","Ecuador":"🇪🇨","Países Bajos":"🇳🇱",
-  "España":"🇪🇸","Argelia":"🇩🇿","Japón":"🇯🇵","Escocia":"🏴󠁧󠁢󠁳󠁣󠁴󠁿",
-  "EE.UU.":"🇺🇸","Serbia":"🇷🇸","Portugal":"🇵🇹","Hungría":"🇭🇺",
-  "Francia":"🇫🇷","Bélgica":"🇧🇪","Alemania":"🇩🇪","Suiza":"🇨🇭",
-  "Marruecos":"🇲🇦","Eslovaquia":"🇸🇰","Uruguay":"🇺🇾","Polonia":"🇵🇱",
-  "Italia":"🇮🇹","Costa Rica":"🇨🇷","Croacia":"🇭🇷","Irlanda":"🇮🇪",
-  "Camerún":"🇨🇲","Venezuela":"🇻🇪","Dinamarca":"🇩🇰","Perú":"🇵🇪",
-  "Inglaterra":"🏴󠁧󠁢󠁥󠁮󠁧󠁿","Rumania":"🇷🇴","Arabia Saudita":"🇸🇦","DR Congo":"🇨🇩",
-  "Nueva Zelanda":"🇳🇿","Honduras":"🇭🇳"
+  "México":"🇲🇽","Sudáfrica":"🇿🇦","Corea del Sur":"🇰🇷","Chequia":"🇨🇿",
+  "Canadá":"🇨🇦","Bosnia y Herzegovina":"🇧🇦","Catar":"🇶🇦","Suiza":"🇨🇭",
+  "Brasil":"🇧🇷","Marruecos":"🇲🇦","Haití":"🇭🇹","Escocia":"🏴",
+  "Estados Unidos":"🇺🇸","Paraguay":"🇵🇾","Australia":"🇦🇺","Turquía":"🇹🇷",
+  "Alemania":"🇩🇪","Curazao":"🇨🇼","Costa de Marfil":"🇨🇮","Ecuador":"🇪🇨",
+  "Países Bajos":"🇳🇱","Japón":"🇯🇵","Suecia":"🇸🇪","Túnez":"🇹🇳",
+  "Bélgica":"🇧🇪","Egipto":"🇪🇬","Irán":"🇮🇷","Nueva Zelanda":"🇳🇿",
+  "España":"🇪🇸","Cabo Verde":"🇨🇻","Arabia Saudita":"🇸🇦","Uruguay":"🇺🇾",
+  "Francia":"🇫🇷","Senegal":"🇸🇳","Irak":"🇮🇶","Noruega":"🇳🇴",
+  "Argentina":"🇦🇷","Argelia":"🇩🇿","Austria":"🇦🇹","Jordania":"🇯🇴",
+  "Portugal":"🇵🇹","RD Congo":"🇨🇩","Uzbekistán":"🇺🇿","Colombia":"🇨🇴",
+  "Inglaterra":"🏴","Croacia":"🇭🇷","Ghana":"🇬🇭","Panamá":"🇵🇦"
 };
 
 function flag(name) { return FLAGS[name] || "🏳️"; }
@@ -769,8 +411,93 @@ function fmtDate(d) {
   return dt.toLocaleDateString('es-MX', { weekday:'long', day:'numeric', month:'long' });
 }
 
-function getPick(id) { return MUNDIAL_DATA.picks.find(p => p.id === id); }
-function getPartido(id) { return MUNDIAL_DATA.partidos.find(p => p.id === id); }
+// ── STATE ──
+let appData = {
+  partidos: JSON.parse(JSON.stringify(MUNDIAL_DATA.partidosOficiales)),
+  picks: [],
+  combinadas: []
+};
+
+// Load picks/combinadas uploaded via admin (shared through localStorage on same browser,
+// or via picks.json placed next to this file)
+function loadPicksData() {
+  try {
+    const saved = localStorage.getItem('mundial2026_picks_data');
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      appData.picks = parsed.picks || [];
+      appData.combinadas = parsed.combinadas || [];
+      return true;
+    }
+  } catch(e) {}
+  return false;
+}
+
+async function loadPicksFromFile() {
+  try {
+    const res = await fetch('picks.json', { cache: 'no-store' });
+    if (res.ok) {
+      const parsed = await res.json();
+      appData.picks = parsed.picks || [];
+      appData.combinadas = parsed.combinadas || [];
+      return true;
+    }
+  } catch(e) {}
+  return false;
+}
+
+function getPick(id) { return appData.picks.find(p => p.id === id); }
+function getPartido(id) { return appData.partidos.find(p => p.id === id); }
+
+// ── SYNC RESULTS FROM PUBLIC SOURCE ──
+async function syncResultados() {
+  const badge = document.getElementById('syncBadge');
+  try {
+    const res = await fetch('https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json', { cache: 'no-store' });
+    if (!res.ok) throw new Error('no ok');
+    const data = await res.json();
+
+    const ENG_TO_ES = {
+      "Mexico":"México","South Africa":"Sudáfrica","South Korea":"Corea del Sur","Czech Republic":"Chequia",
+      "Canada":"Canadá","Bosnia & Herzegovina":"Bosnia y Herzegovina","Qatar":"Catar","Switzerland":"Suiza",
+      "Brazil":"Brasil","Morocco":"Marruecos","Haiti":"Haití","Scotland":"Escocia",
+      "USA":"Estados Unidos","Paraguay":"Paraguay","Australia":"Australia","Turkey":"Turquía",
+      "Germany":"Alemania","Curaçao":"Curazao","Ivory Coast":"Costa de Marfil","Ecuador":"Ecuador",
+      "Netherlands":"Países Bajos","Japan":"Japón","Sweden":"Suecia","Tunisia":"Túnez",
+      "Belgium":"Bélgica","Egypt":"Egipto","Iran":"Irán","New Zealand":"Nueva Zelanda",
+      "Spain":"España","Cape Verde":"Cabo Verde","Saudi Arabia":"Arabia Saudita","Uruguay":"Uruguay",
+      "France":"Francia","Iraq":"Irak","Norway":"Noruega","Senegal":"Senegal",
+      "Algeria":"Argelia","Argentina":"Argentina","Austria":"Austria","Jordan":"Jordania",
+      "Colombia":"Colombia","DR Congo":"RD Congo","Portugal":"Portugal","Uzbekistan":"Uzbekistán",
+      "Croatia":"Croacia","England":"Inglaterra","Ghana":"Ghana","Panama":"Panamá"
+    };
+
+    let updated = 0;
+    data.matches.forEach(m => {
+      if (!m.score || !m.score.ft) return;
+      const localEs = ENG_TO_ES[m.team1] || m.team1;
+      const visEs = ENG_TO_ES[m.team2] || m.team2;
+      const match = appData.partidos.find(p =>
+        p.fecha === m.date && p.local === localEs && p.visitante === visEs
+      );
+      if (match && !match.resultado) {
+        match.resultado = { local: m.score.ft[0], visitante: m.score.ft[1] };
+        updated++;
+      }
+    });
+
+    if (badge) {
+      badge.innerHTML = '<span class="sync-dot"></span> Resultados en vivo';
+      badge.title = 'Última sincronización: ' + new Date().toLocaleTimeString('es-MX');
+    }
+    return updated;
+  } catch (e) {
+    if (badge) {
+      badge.innerHTML = '<span class="sync-dot" style="background:var(--texto3);animation:none"></span> Sin conexión';
+    }
+    return 0;
+  }
+}
 
 // ── TABS ──
 function showTab(tab) {
@@ -784,12 +511,12 @@ function showTab(tab) {
   document.querySelectorAll('#mobileNav .filter-btn')[tabMap[tab]]?.classList.add('active');
 }
 
-// ── BUILD PICKS ──
 let currentDateFilter = 'all';
 
 function buildFilterBar() {
-  const dates = [...new Set(MUNDIAL_DATA.picks.map(p => p.fecha))].sort();
+  const dates = [...new Set(appData.picks.map(p => p.fecha))].sort();
   const bar = document.getElementById('filterBar');
+  bar.innerHTML = '<button class="filter-btn active" onclick="filterPicks(\'all\', this)">Todos</button>';
   dates.forEach(d => {
     const btn = document.createElement('button');
     btn.className = 'filter-btn';
@@ -799,8 +526,10 @@ function buildFilterBar() {
     bar.appendChild(btn);
   });
 
+  const calDates = [...new Set(appData.partidos.map(p => p.fecha))].sort();
   const calBar = document.getElementById('calFilterBar');
-  dates.forEach(d => {
+  calBar.innerHTML = '<button class="filter-btn active" onclick="filterCal(\'all\', this)">Todos</button>';
+  calDates.forEach(d => {
     const btn = document.createElement('button');
     btn.className = 'filter-btn';
     const dt = new Date(d + 'T12:00:00');
@@ -828,11 +557,11 @@ function renderPicks() {
   container.innerHTML = '';
 
   const picks = currentDateFilter === 'all'
-    ? MUNDIAL_DATA.picks
-    : MUNDIAL_DATA.picks.filter(p => p.fecha === currentDateFilter);
+    ? appData.picks
+    : appData.picks.filter(p => p.fecha === currentDateFilter);
 
   if (!picks.length) {
-    container.innerHTML = '<div class="empty-state"><div class="empty-icon">📋</div>No hay picks para esta fecha.</div>';
+    container.innerHTML = '<div class="empty-state"><div class="empty-icon">📋</div>Todavía no hay picks publicados.<br>El administrador subirá el archivo con los picks del día.</div>';
     return;
   }
 
@@ -861,19 +590,17 @@ function renderPicks() {
 
       const grid = document.createElement('div');
       grid.className = 'picks-grid';
-
       byDate[fecha][partidoId].forEach(pick => {
         grid.innerHTML += buildPickCard(pick, partido);
       });
-
       container.appendChild(grid);
     });
   });
 }
 
 function buildPickCard(pick, partido) {
-  const confLower = pick.confianza.toLowerCase();
-  const resHtml = pick.resultado !== null
+  const confLower = (pick.confianza || 'media').toLowerCase();
+  const resHtml = pick.resultado !== null && pick.resultado !== undefined
     ? `<div class="pick-resultado ${pick.resultado ? 'resultado-verde' : 'resultado-rojo'}">${pick.resultado ? '✓ ACERTADO' : '✗ FALLIDO'}</div>`
     : '';
 
@@ -887,24 +614,26 @@ function buildPickCard(pick, partido) {
       <div class="pick-valor">${pick.pick}</div>
       <div class="pick-prob-bar"><div class="pick-prob-fill" style="width:${pick.probabilidad}%"></div></div>
       <div class="pick-footer">
-        <div>
-          <div class="pick-cuota">${pick.cuota.toFixed(2)}</div>
-        </div>
+        <div class="pick-cuota">${Number(pick.cuota).toFixed(2)}</div>
         <div class="pick-prob-label">${pick.probabilidad}% modelo</div>
       </div>
-      <div class="pick-just">${pick.justificacion}</div>
+      <div class="pick-just">${pick.justificacion || ''}</div>
       ${resHtml}
     </div>
   `;
 }
 
-// ── COMBINADAS ──
 function renderCombinadas() {
   const container = document.getElementById('combinadasContainer');
   container.innerHTML = '';
 
+  if (!appData.combinadas.length) {
+    container.innerHTML = '<div class="empty-state"><div class="empty-icon">🔗</div>Todavía no hay combinadas publicadas.</div>';
+    return;
+  }
+
   const byDate = {};
-  MUNDIAL_DATA.combinadas.forEach(c => {
+  appData.combinadas.forEach(c => {
     if (!byDate[c.fecha]) byDate[c.fecha] = [];
     byDate[c.fecha].push(c);
   });
@@ -922,23 +651,23 @@ function renderCombinadas() {
         return pk && pt ? `<li style="color:var(--texto2);font-size:12px;padding:3px 0;border-bottom:1px solid var(--borde)">${flag(pt.local)} ${pt.local} vs ${pt.visitante} — <strong style="color:var(--texto)">${pk.pick}</strong></li>` : '';
       }).join('');
 
-      const riesgoClass = `riesgo-${c.riesgo.toLowerCase()}`;
+      const riesgoClass = `riesgo-${(c.riesgo || 'medio').toLowerCase()}`;
       const cuotaColor = c.riesgo === 'Bajo' ? 'var(--verde)' : c.riesgo === 'Medio' ? 'var(--oro)' : 'var(--rojo)';
 
       container.innerHTML += `
         <div class="combinada-card">
           <div class="combinada-header">
             <div>
-              <div class="combinada-tipo">COMBINADA ${c.tipo.toUpperCase()}</div>
+              <div class="combinada-tipo">COMBINADA ${(c.tipo || '').toUpperCase()}</div>
               <div style="font-size:12px;color:var(--texto3);margin-top:2px">${c.picks.length} selecciones</div>
             </div>
             <div style="text-align:right">
-              <div class="combinada-cuota-big" style="color:${cuotaColor}">${c.cuotaCombinada.toFixed(2)}</div>
+              <div class="combinada-cuota-big" style="color:${cuotaColor}">${Number(c.cuotaCombinada).toFixed(2)}</div>
               <div class="combinada-cuota-label">CUOTA COMBINADA</div>
-              <span class="riesgo-tag ${riesgoClass}" style="display:inline-block;margin-top:4px">RIESGO ${c.riesgo.toUpperCase()}</span>
+              <span class="riesgo-tag ${riesgoClass}" style="display:inline-block;margin-top:4px">RIESGO ${(c.riesgo || '').toUpperCase()}</span>
             </div>
           </div>
-          <div class="combinada-desc">${c.descripcion}</div>
+          <div class="combinada-desc">${c.descripcion || ''}</div>
           <ul style="list-style:none;padding-left:0">${pickDetails}</ul>
         </div>
       `;
@@ -946,14 +675,13 @@ function renderCombinadas() {
   });
 }
 
-// ── CALENDARIO ──
 function renderCalendar(dateFilter = 'all') {
   const container = document.getElementById('calendarioContainer');
   container.innerHTML = '';
 
   const partidos = dateFilter === 'all'
-    ? [...MUNDIAL_DATA.partidos].sort((a,b) => a.fecha.localeCompare(b.fecha) || a.hora.localeCompare(b.hora))
-    : MUNDIAL_DATA.partidos.filter(p => p.fecha === dateFilter).sort((a,b) => a.hora.localeCompare(b.hora));
+    ? [...appData.partidos].sort((a,b) => a.fecha.localeCompare(b.fecha) || a.hora.localeCompare(b.hora))
+    : appData.partidos.filter(p => p.fecha === dateFilter).sort((a,b) => a.hora.localeCompare(b.hora));
 
   if (!partidos.length) {
     container.innerHTML = '<div class="empty-state"><div class="empty-icon">📅</div>No hay partidos para esta fecha.</div>';
@@ -973,14 +701,14 @@ function renderCalendar(dateFilter = 'all') {
     container.appendChild(dh);
 
     byDate[fecha].forEach(p => {
-      const hasResult = p.resultado !== null;
-      const hasPicks = MUNDIAL_DATA.picks.some(pk => pk.partidoId === p.id);
+      const hasResult = !!p.resultado;
+      const hasPicks = appData.picks.some(pk => pk.partidoId === p.id);
 
       container.innerHTML += `
         <div class="partido-card">
           <div class="partido-header">
             <div class="partido-meta">
-              <span>⏰ ${p.hora}</span>
+              <span>⏰ ${p.hora} (UTC${p.utc_offset})</span>
               <span>📍 ${p.sede}</span>
             </div>
             <div style="display:flex;gap:8px;align-items:center">
@@ -998,7 +726,7 @@ function renderCalendar(dateFilter = 'all') {
                 ? `<div class="marcador-num">${p.resultado.local} — ${p.resultado.visitante}</div>`
                 : `<div class="marcador-vs">VS</div>`
               }
-              <div class="marcador-hora">${p.hora} ET</div>
+              <div class="marcador-hora">${p.hora}</div>
               <span class="marcador-status ${hasResult ? 'status-finalizado' : 'status-pendiente'}">
                 ${hasResult ? 'FINALIZADO' : 'PENDIENTE'}
               </span>
@@ -1014,15 +742,14 @@ function renderCalendar(dateFilter = 'all') {
   });
 }
 
-// ── STATS ──
 function renderStats() {
-  const picks = MUNDIAL_DATA.picks;
-  const evaluados = picks.filter(p => p.resultado !== null).length;
+  const picks = appData.picks;
+  const evaluados = picks.filter(p => p.resultado !== null && p.resultado !== undefined).length;
   const acertados = picks.filter(p => p.resultado === true).length;
   const tasa = evaluados ? Math.round((acertados/evaluados)*100) : 0;
 
   const alta = picks.filter(p => p.confianza === 'Alta');
-  const altaEval = alta.filter(p => p.resultado !== null).length;
+  const altaEval = alta.filter(p => p.resultado !== null && p.resultado !== undefined).length;
   const altaAc = alta.filter(p => p.resultado === true).length;
   const altaTasa = altaEval ? Math.round((altaAc/altaEval)*100) : 0;
 
@@ -1035,15 +762,16 @@ function renderStats() {
     <div class="stat-box"><div class="stat-num">${altaEval ? altaTasa+'%' : '—'}</div><div class="stat-lbl">Tasa alta conf.</div></div>
   `;
 
+  document.getElementById('totalPicksHero').textContent = picks.length;
+  document.getElementById('combinadasHero').textContent = appData.combinadas.length;
   document.getElementById('aciertosHero').textContent = evaluados ? acertados : '—';
   document.getElementById('tasaHero').textContent = evaluados ? tasa + '%' : '—%';
 
-  // Mercados
   const mercados = {};
   picks.forEach(p => {
     if (!mercados[p.mercado]) mercados[p.mercado] = { total: 0, eval: 0, ac: 0 };
     mercados[p.mercado].total++;
-    if (p.resultado !== null) {
+    if (p.resultado !== null && p.resultado !== undefined) {
       mercados[p.mercado].eval++;
       if (p.resultado === true) mercados[p.mercado].ac++;
     }
@@ -1052,7 +780,7 @@ function renderStats() {
   let mHtml = '';
   Object.keys(mercados).forEach(m => {
     const info = mercados[m];
-    const tasa = info.eval ? Math.round((info.ac/info.eval)*100) : null;
+    const tasaM = info.eval ? Math.round((info.ac/info.eval)*100) : null;
     mHtml += `
       <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:var(--fondo2);border:1px solid var(--borde);border-radius:8px;margin-bottom:8px">
         <div>
@@ -1060,40 +788,33 @@ function renderStats() {
           <div style="font-size:11px;color:var(--texto3);margin-top:2px">${info.total} pick${info.total>1?'s':''}</div>
         </div>
         <div style="text-align:right">
-          <div style="font-family:'Bebas Neue',sans-serif;font-size:24px;color:${tasa!==null?(tasa>=60?'var(--verde)':tasa>=40?'var(--oro)':'var(--rojo)'):'var(--texto3)'}">${tasa !== null ? tasa + '%' : '—'}</div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:24px;color:${tasaM!==null?(tasaM>=60?'var(--verde)':tasaM>=40?'var(--oro)':'var(--rojo)'):'var(--texto3)'}">${tasaM !== null ? tasaM + '%' : '—'}</div>
           <div style="font-size:10px;color:var(--texto3)">ACIERTO</div>
         </div>
       </div>
     `;
   });
-  document.getElementById('mercadoStats').innerHTML = mHtml;
-
-  // Correcciones v3
-  const corrs = [
-    { icon: '🚫', titulo: 'BTTS eliminado', desc: 'BTTS/Ambos marcan removido de picks principales — 0% historial de acierto' },
-    { icon: '⚽', titulo: 'Over 4.5 directo', desc: 'Se aplica Over 4.5 cuando diferencia FIFA es mayor a 80 posiciones' },
-    { icon: '🛡️', titulo: 'Factor bloque-contragolpe', desc: '+8% equipo inferior cuando gap FIFA >30 posiciones en MD1; reduce confianza del favorito' },
-    { icon: '📊', titulo: 'Under MD1 condicionado', desc: 'Ajuste Under MD1 solo aplica si al menos un equipo tiene 6+ partidos sin conceder' },
-    { icon: '✅', titulo: 'Doble Oportunidad priorizada', desc: 'Mercado más fiable históricamente — 100% tasa en el modelo' },
-  ];
-
-  document.getElementById('correccionesContainer').innerHTML = corrs.map(c => `
-    <div style="display:flex;gap:14px;padding:14px 16px;background:var(--fondo2);border:1px solid var(--borde);border-left:3px solid var(--verde);border-radius:8px;margin-bottom:10px;align-items:flex-start">
-      <div style="font-size:20px;line-height:1;flex-shrink:0">${c.icon}</div>
-      <div>
-        <div style="font-size:13px;font-weight:600;color:var(--verde)">${c.titulo}</div>
-        <div style="font-size:12px;color:var(--texto2);margin-top:4px;line-height:1.5">${c.desc}</div>
-      </div>
-    </div>
-  `).join('');
+  document.getElementById('mercadoStats').innerHTML = mHtml || '<div class="empty-state">Sin datos de mercados todavía.</div>';
 }
 
-// ── INIT ──
-buildFilterBar();
-renderPicks();
-renderCombinadas();
-renderCalendar();
-renderStats();
+async function init() {
+  const hadFile = await loadPicksFromFile();
+  if (!hadFile) loadPicksData();
+
+  await syncResultados();
+
+  buildFilterBar();
+  renderPicks();
+  renderCombinadas();
+  renderCalendar();
+  renderStats();
+}
+
+init();
+setInterval(async () => {
+  const updated = await syncResultados();
+  if (updated > 0) renderCalendar();
+}, 5 * 60 * 1000);
 </script>
 </body>
 </html>
