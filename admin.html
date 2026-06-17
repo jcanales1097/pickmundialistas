@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — Mundial 2026 Picks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --verde: #00C853;
+    --verde-dark: #00962c;
+    --oro: #FFD600;
+    --rojo: #E53935;
+    --azul: #1565C0;
+    --fondo: #0a0e1a;
+    --fondo2: #111827;
+    --fondo3: #1c2336;
+    --borde: rgba(255,255,255,0.08);
+    --borde-hover: rgba(0,200,83,0.3);
+    --texto: #f0f4ff;
+    --texto2: #8892aa;
+    --texto3: #556080;
+    --radio: 10px;
+    --radio-lg: 14px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--fondo);
+    color: var(--texto);
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  header {
+    background: var(--fondo2);
+    border-bottom: 1px solid var(--borde);
+    padding: 0 1.5rem;
+  }
+
+  .header-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+  }
+
+  .logo {
+    display: flex; align-items: center; gap: 10px;
+  }
+
+  .admin-badge {
+    background: var(--rojo);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 4px;
+    letter-spacing: 1px;
+  }
+
+  .logo-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 2px;
+  }
+
+  .header-actions { display: flex; gap: 8px; align-items: center; }
+
+  .btn {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--borde);
+    background: transparent;
+    color: var(--texto2);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn:hover { border-color: var(--borde-hover); color: var(--texto); }
+
+  .btn-primary {
+    background: var(--verde);
+    color: #000;
+    border-color: var(--verde);
+    font-weight: 600;
+  }
+
+  .btn-primary:hover { background: var(--verde-dark); border-color: var(--verde-dark); color: #000; }
+
+  .btn-danger {
+    background: rgba(229,57,53,0.1);
+    color: var(--rojo);
+    border-color: rgba(229,57,53,0.3);
+  }
+
+  .btn-danger:hover { background: rgba(229,57,53,0.2); }
+
+  .btn-sm { padding: 5px 10px; font-size: 12px; border-radius: 6px; }
+
+  /* LAYOUT */
+  .app {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 1.5rem;
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 1.5rem;
+  }
+
+  /* SIDEBAR */
+  .sidebar { display: flex; flex-direction: column; gap: 12px; }
+
+  .sidebar-section {
+    background: var(--fondo2);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio-lg);
+    overflow: hidden;
+  }
+
+  .sidebar-header {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--borde);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--texto3);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .sidebar-item {
+    padding: 10px 14px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background 0.15s;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .sidebar-item:hover { background: rgba(255,255,255,0.03); }
+  .sidebar-item.active { background: rgba(0,200,83,0.07); color: var(--verde); }
+
+  .badge {
+    font-size: 10px;
+    background: rgba(0,200,83,0.1);
+    color: var(--verde);
+    padding: 2px 7px;
+    border-radius: 10px;
+    font-weight: 600;
+  }
+
+  /* MAIN CONTENT */
+  .content { display: flex; flex-direction: column; gap: 1.5rem; }
+
+  /* PANEL CARD */
+  .panel {
+    background: var(--fondo2);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio-lg);
+    overflow: hidden;
+  }
+
+  .panel-header {
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--borde);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .panel-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 1px;
+  }
+
+  .panel-body { padding: 18px; }
+
+  /* FORM */
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .form-group.full { grid-column: 1 / -1; }
+
+  label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--texto3);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  input, select, textarea {
+    background: var(--fondo3);
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+    color: var(--texto);
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    padding: 9px 12px;
+    transition: border-color 0.2s;
+    width: 100%;
+  }
+
+  input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--verde);
+  }
+
+  select option { background: var(--fondo2); }
+  textarea { resize: vertical; min-height: 70px; line-height: 1.5; }
+
+  .form-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+    padding-top: 12px;
+    border-top: 1px solid var(--borde);
+  }
+
+  /* TABLE */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+
+  .data-table th {
+    text-align: left;
+    padding: 8px 12px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--texto3);
+    border-bottom: 1px solid var(--borde);
+  }
+
+  .data-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    color: var(--texto2);
+    vertical-align: middle;
+  }
+
+  .data-table tr:hover td { background: rgba(255,255,255,0.02); }
+  .data-table tr:last-child td { border-bottom: none; }
+
+  .conf-badge {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+    letter-spacing: 1px;
+  }
+
+  .conf-alta { background: rgba(0,200,83,0.12); color: var(--verde); }
+  .conf-media { background: rgba(255,214,0,0.12); color: var(--oro); }
+
+  .res-badge {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+  }
+
+  .res-v { background: rgba(0,200,83,0.1); color: var(--verde); }
+  .res-f { background: rgba(229,57,53,0.1); color: var(--rojo); }
+  .res-p { background: rgba(255,214,0,0.08); color: var(--oro); }
+
+  /* TABS */
+  .tab-nav {
+    display: flex;
+    gap: 4px;
+    padding: 12px 18px 0;
+    border-bottom: 1px solid var(--borde);
+    background: var(--fondo3);
+  }
+
+  .tab-btn {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: var(--texto3);
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 8px 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-bottom: -1px;
+  }
+
+  .tab-btn:hover { color: var(--texto2); }
+  .tab-btn.active { color: var(--verde); border-bottom-color: var(--verde); }
+
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* STATS ROW */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+
+  .stat-mini {
+    background: var(--fondo3);
+    border: 1px solid var(--borde);
+    border-radius: 10px;
+    padding: 12px 14px;
+  }
+
+  .stat-mini .n {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    color: var(--verde);
+    line-height: 1;
+  }
+
+  .stat-mini .l {
+    font-size: 10px;
+    color: var(--texto3);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 3px;
+  }
+
+  /* TOAST */
+  #toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: var(--fondo3);
+    border: 1px solid var(--verde);
+    color: var(--texto);
+    font-size: 13px;
+    padding: 12px 20px;
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    z-index: 999;
+    transform: translateY(80px);
+    opacity: 0;
+    transition: all 0.3s ease;
+    max-width: 320px;
+  }
+
+  #toast.show { transform: translateY(0); opacity: 1; }
+  #toast.error { border-color: var(--rojo); }
+
+  .import-area {
+    background: var(--fondo3);
+    border: 1px dashed var(--borde);
+    border-radius: 10px;
+    padding: 24px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+
+  .import-area:hover { border-color: var(--borde-hover); }
+  .import-area p { font-size: 13px; color: var(--texto3); margin-top: 8px; }
+
+  .empty-row td { text-align: center; padding: 32px; color: var(--texto3); font-size: 12px; }
+
+  .divider { height: 1px; background: var(--borde); margin: 1rem 0; }
+
+  footer {
+    text-align: center;
+    padding: 2rem;
+    border-top: 1px solid var(--borde);
+    margin-top: 2rem;
+    font-size: 12px;
+    color: var(--texto3);
+    letter-spacing: 1px;
+  }
+
+  footer strong { color: var(--verde); }
+
+  @media (max-width: 900px) {
+    .app { grid-template-columns: 1fr; }
+    .stats-row { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo">
+      <span class="admin-badge">ADMIN</span>
+      <span class="logo-text">Mundial 2026 — Panel de Control</span>
+    </div>
+    <div class="header-actions">
+      <span id="modelLabel" style="font-size:11px;color:var(--verde);background:rgba(0,200,83,0.1);padding:4px 10px;border-radius:4px;letter-spacing:1px;font-weight:600">MODELO v3</span>
+      <button class="btn" onclick="exportData()">📤 Exportar JSON</button>
+      <a href="index.html" class="btn btn-primary" target="_blank">👁 Ver sitio</a>
+    </div>
+  </div>
+</header>
+
+<div class="app">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <div class="sidebar-section">
+      <div class="sidebar-header">Navegación</div>
+      <div class="sidebar-item active" onclick="showSection('dashboard')">
+        📊 Dashboard
+      </div>
+      <div class="sidebar-item" onclick="showSection('picks')">
+        🎯 Gestionar Picks <span class="badge" id="pickCount">0</span>
+      </div>
+      <div class="sidebar-item" onclick="showSection('combinadas')">
+        🔗 Gestionar Combinadas <span class="badge" id="combCount">0</span>
+      </div>
+      <div class="sidebar-item" onclick="showSection('partidos')">
+        ⚽ Resultados <span class="badge" id="matchCount">0</span>
+      </div>
+      <div class="sidebar-item" onclick="showSection('modelo')">
+        🔧 Config. Modelo
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-header">Fechas con picks</div>
+      <div id="datesList"></div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-header">Resumen rápido</div>
+      <div style="padding:12px 14px">
+        <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--borde);font-size:12px">
+          <span style="color:var(--texto3)">Total picks</span>
+          <strong id="sideTotalPicks">0</strong>
+        </div>
+        <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--borde);font-size:12px">
+          <span style="color:var(--texto3)">Evaluados</span>
+          <strong id="sideEval">0</strong>
+        </div>
+        <div style="display:flex;justify-content:space-between;padding:6px 0;font-size:12px">
+          <span style="color:var(--texto3)">Tasa acierto</span>
+          <strong id="sideTasa" style="color:var(--verde)">—</strong>
+        </div>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- CONTENT -->
+  <main class="content">
+
+    <!-- DASHBOARD -->
+    <div id="section-dashboard" class="section-content">
+      <div class="panel">
+        <div class="panel-header">
+          <span class="panel-title">Dashboard General</span>
+          <span style="font-size:12px;color:var(--texto3)" id="lastUpdateLabel"></span>
+        </div>
+        <div class="panel-body">
+          <div class="stats-row" id="dashStats"></div>
+
+          <div class="divider"></div>
+
+          <div style="font-size:12px;font-weight:600;color:var(--texto3);letter-spacing:1px;text-transform:uppercase;margin-bottom:12px">Últimos picks cargados</div>
+          <div id="recentPicks"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PICKS -->
+    <div id="section-picks" class="section-content" style="display:none">
+      <div class="panel">
+        <div class="tab-nav">
+          <button class="tab-btn active" onclick="showPickTab('list')">Lista de Picks</button>
+          <button class="tab-btn" onclick="showPickTab('new')">+ Nuevo Pick</button>
+          <button class="tab-btn" onclick="showPickTab('results')">Cargar Resultados</button>
+        </div>
+
+        <!-- LIST -->
+        <div id="pickTab-list" class="tab-content active">
+          <div class="panel-body">
+            <div style="display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap">
+              <select id="filterFecha" onchange="renderPicksTable()" style="width:auto;min-width:140px">
+                <option value="">Todas las fechas</option>
+              </select>
+              <select id="filterConfianza" onchange="renderPicksTable()" style="width:auto">
+                <option value="">Toda confianza</option>
+                <option value="Alta">Alta</option>
+                <option value="Media">Media</option>
+              </select>
+              <select id="filterModelo" onchange="renderPicksTable()" style="width:auto">
+                <option value="">Todos los modelos</option>
+                <option value="v2">v2</option>
+                <option value="v3">v3</option>
+              </select>
+            </div>
+            <div style="overflow-x:auto">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Partido</th>
+                    <th>Fecha</th>
+                    <th>Mercado</th>
+                    <th>Pick</th>
+                    <th>Cuota</th>
+                    <th>Prob.</th>
+                    <th>Conf.</th>
+                    <th>Modelo</th>
+                    <th>Resultado</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody id="picksTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- NEW PICK -->
+        <div id="pickTab-new" class="tab-content">
+          <div class="panel-body">
+            <div id="newPickMsg"></div>
+            <div class="form-grid">
+              <div class="form-group">
+                <label>Fecha del partido</label>
+                <input type="date" id="npFecha" onchange="updatePartidoSelect()">
+              </div>
+              <div class="form-group">
+                <label>Partido</label>
+                <select id="npPartido" onchange="updatePartidoInfo()">
+                  <option value="">— Seleccionar —</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Tipo de mercado</label>
+                <select id="npTipo">
+                  <option>Resultado</option>
+                  <option>Goles</option>
+                  <option>Corners</option>
+                  <option>Tarjetas</option>
+                  <option>Jugador</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Mercado específico</label>
+                <select id="npMercado">
+                  <option>Doble Oportunidad</option>
+                  <option>Victoria local</option>
+                  <option>Victoria visitante</option>
+                  <option>Empate</option>
+                  <option>Over 0.5</option>
+                  <option>Over 1.5</option>
+                  <option>Over 2.5</option>
+                  <option>Over 3.5</option>
+                  <option>Over 4.5</option>
+                  <option>Under 0.5</option>
+                  <option>Under 1.5</option>
+                  <option>Under 2.5</option>
+                  <option>Under 3.5</option>
+                  <option>Hándicap -1</option>
+                  <option>Hándicap +1</option>
+                  <option>1er goleador</option>
+                  <option>Marcador exacto</option>
+                </select>
+              </div>
+              <div class="form-group full">
+                <label>Valor del pick</label>
+                <input type="text" id="npPick" placeholder="Ej: México o Empate">
+              </div>
+              <div class="form-group">
+                <label>Cuota</label>
+                <input type="number" id="npCuota" step="0.01" min="1" placeholder="1.80">
+              </div>
+              <div class="form-group">
+                <label>Probabilidad modelo (%)</label>
+                <input type="number" id="npProb" min="1" max="99" placeholder="72">
+              </div>
+              <div class="form-group">
+                <label>Confianza</label>
+                <select id="npConfianza">
+                  <option>Alta</option>
+                  <option>Media</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Versión modelo</label>
+                <select id="npModelo">
+                  <option value="v3">v3 (actual)</option>
+                  <option value="v2">v2</option>
+                </select>
+              </div>
+              <div class="form-group full">
+                <label>Justificación</label>
+                <textarea id="npJust" placeholder="Razonamiento estadístico del pick..."></textarea>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button class="btn" onclick="clearPickForm()">Limpiar</button>
+              <button class="btn btn-primary" onclick="addPick()">✓ Agregar Pick</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- RESULTS -->
+        <div id="pickTab-results" class="tab-content">
+          <div class="panel-body">
+            <p style="font-size:13px;color:var(--texto2);margin-bottom:16px">Registra el resultado de los picks para actualizar la tasa de acierto del modelo.</p>
+            <div style="overflow-x:auto">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Partido</th>
+                    <th>Pick</th>
+                    <th>Cuota</th>
+                    <th>Resultado actual</th>
+                    <th>Actualizar</th>
+                  </tr>
+                </thead>
+                <tbody id="resultsTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COMBINADAS -->
+    <div id="section-combinadas" class="section-content" style="display:none">
+      <div class="panel">
+        <div class="tab-nav">
+          <button class="tab-btn active" onclick="showCombTab('list')">Lista</button>
+          <button class="tab-btn" onclick="showCombTab('new')">+ Nueva Combinada</button>
+        </div>
+
+        <div id="combTab-list" class="tab-content active">
+          <div class="panel-body">
+            <div id="combinadasList"></div>
+          </div>
+        </div>
+
+        <div id="combTab-new" class="tab-content">
+          <div class="panel-body">
+            <div class="form-grid">
+              <div class="form-group">
+                <label>Fecha</label>
+                <input type="date" id="ncFecha">
+              </div>
+              <div class="form-group">
+                <label>Tipo</label>
+                <select id="ncTipo">
+                  <option>Conservadora</option>
+                  <option>Equilibrada</option>
+                  <option>Agresiva</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Riesgo</label>
+                <select id="ncRiesgo">
+                  <option>Bajo</option>
+                  <option>Medio</option>
+                  <option>Alto</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Cuota combinada</label>
+                <input type="number" id="ncCuota" step="0.01" min="1" placeholder="3.50">
+              </div>
+              <div class="form-group full">
+                <label>Descripción</label>
+                <input type="text" id="ncDesc" placeholder="Ej: 3 dobles oportunidades MD1">
+              </div>
+              <div class="form-group full">
+                <label>Seleccionar Picks (Ctrl+Click para múltiple)</label>
+                <select id="ncPicks" multiple style="min-height:140px">
+                </select>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button class="btn" onclick="calcCuota()">🔢 Calcular cuota</button>
+              <button class="btn btn-primary" onclick="addCombinada()">✓ Agregar Combinada</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PARTIDOS / RESULTADOS -->
+    <div id="section-partidos" class="section-content" style="display:none">
+      <div class="panel">
+        <div class="panel-header">
+          <span class="panel-title">Cargar Resultados de Partidos</span>
+        </div>
+        <div class="panel-body">
+          <p style="font-size:13px;color:var(--texto2);margin-bottom:16px">Actualiza el marcador final de los partidos para mostrar en el calendario público.</p>
+          <div style="overflow-x:auto">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Partido</th>
+                  <th>Fecha</th>
+                  <th>Hora</th>
+                  <th>Estado</th>
+                  <th>Marcador</th>
+                  <th>Guardar</th>
+                </tr>
+              </thead>
+              <tbody id="matchResultsBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODELO -->
+    <div id="section-modelo" class="section-content" style="display:none">
+      <div class="panel">
+        <div class="panel-header">
+          <span class="panel-title">Configuración del Modelo</span>
+        </div>
+        <div class="panel-body">
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Versión actual</label>
+              <input type="text" id="cfgVersion" placeholder="v3">
+            </div>
+            <div class="form-group">
+              <label>Fecha de activación</label>
+              <input type="date" id="cfgFecha">
+            </div>
+            <div class="form-group">
+              <label>Penalización MD1 Over (%)</label>
+              <input type="number" id="cfgMd1" placeholder="12">
+            </div>
+            <div class="form-group">
+              <label>Factor amistosos</label>
+              <input type="number" id="cfgAmistosos" step="0.1" placeholder="0.6">
+            </div>
+            <div class="form-group">
+              <label>Ajuste gol tardío (%)</label>
+              <input type="number" id="cfgGolTardio" placeholder="7">
+            </div>
+            <div class="form-group">
+              <label>Umbral BTTS No (partidos)</label>
+              <input type="number" id="cfgBtts" placeholder="6">
+            </div>
+            <div class="form-group">
+              <label>Gap FIFA para Over 4.5</label>
+              <input type="number" id="cfgGapOver45" placeholder="80">
+            </div>
+            <div class="form-group">
+              <label>Factor bloque-contragolpe (%)</label>
+              <input type="number" id="cfgBloque" placeholder="8">
+            </div>
+          </div>
+          <div class="form-actions">
+            <button class="btn btn-primary" onclick="saveModelo()">💾 Guardar configuración</button>
+          </div>
+
+          <div class="divider"></div>
+
+          <div style="font-size:12px;font-weight:600;color:var(--texto3);letter-spacing:1px;text-transform:uppercase;margin-bottom:12px">Correcciones activas v3</div>
+          <div id="correccionesAdmin"></div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<footer>
+  Desarrollado por <strong>JCANALES</strong> · Panel administrativo · No compartir acceso
+</footer>
+
+<div id="toast">✓ Operación completada</div>
+
+<script src="data.js"></script>
+<script>
+
+// ── STATE ──
+let appData = JSON.parse(JSON.stringify(MUNDIAL_DATA));
+
+// Load saved state
+try {
+  const saved = localStorage.getItem('mundial2026_admin');
+  if (saved) {
+    const parsed = JSON.parse(saved);
+    appData.picks = parsed.picks || appData.picks;
+    appData.combinadas = parsed.combinadas || appData.combinadas;
+    appData.partidos = parsed.partidos || appData.partidos;
+    if (parsed.version) appData.version = parsed.version;
+  }
+} catch(e) {}
+
+function saveState() {
+  localStorage.setItem('mundial2026_admin', JSON.stringify({
+    picks: appData.picks,
+    combinadas: appData.combinadas,
+    partidos: appData.partidos,
+    version: appData.version
+  }));
+  updateSidebar();
+}
+
+// ── TOAST ──
+function toast(msg, err = false) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'show' + (err ? ' error' : '');
+  setTimeout(() => t.className = '', 3000);
+}
+
+// ── SECTIONS ──
+function showSection(id) {
+  document.querySelectorAll('.section-content').forEach(s => s.style.display = 'none');
+  document.getElementById('section-' + id).style.display = 'block';
+  document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
+  const items = document.querySelectorAll('.sidebar-item');
+  const map = { dashboard:0, picks:1, combinadas:2, partidos:3, modelo:4 };
+  if (items[map[id]]) items[map[id]].classList.add('active');
+
+  if (id === 'dashboard') renderDashboard();
+  if (id === 'picks') { renderPicksTable(); renderResultsTable(); buildPartidoSelect(); }
+  if (id === 'combinadas') { renderCombinadas(); buildPicksSelect(); }
+  if (id === 'partidos') renderMatchResults();
+  if (id === 'modelo') renderModelo();
+}
+
+// ── SIDEBAR ──
+function updateSidebar() {
+  document.getElementById('pickCount').textContent = appData.picks.length;
+  document.getElementById('combCount').textContent = appData.combinadas.length;
+  document.getElementById('matchCount').textContent = appData.partidos.length;
+  document.getElementById('sideTotalPicks').textContent = appData.picks.length;
+  const eval_ = appData.picks.filter(p => p.resultado !== null).length;
+  const ac = appData.picks.filter(p => p.resultado === true).length;
+  document.getElementById('sideEval').textContent = eval_;
+  document.getElementById('sideTasa').textContent = eval_ ? Math.round(ac/eval_*100) + '%' : '—';
+  document.getElementById('modelLabel').textContent = 'MODELO ' + appData.version.toUpperCase();
+
+  const dates = [...new Set(appData.picks.map(p => p.fecha))].sort();
+  const dl = document.getElementById('datesList');
+  dl.innerHTML = '';
+  dates.forEach(d => {
+    const cnt = appData.picks.filter(pk => pk.fecha === d).length;
+    const dt = new Date(d + 'T12:00:00');
+    const lbl = dt.toLocaleDateString('es-MX', { day:'numeric', month:'short' });
+    dl.innerHTML += `<div class="sidebar-item"><span>${lbl}</span><span class="badge">${cnt}</span></div>`;
+  });
+}
+
+// ── DASHBOARD ──
+function renderDashboard() {
+  const picks = appData.picks;
+  const eval_ = picks.filter(p => p.resultado !== null).length;
+  const ac = picks.filter(p => p.resultado === true).length;
+  const tasa = eval_ ? Math.round(ac/eval_*100) : 0;
+  const alta = picks.filter(p => p.confianza === 'Alta' && p.resultado !== null);
+  const altaTasa = alta.length ? Math.round(alta.filter(p => p.resultado === true).length / alta.length * 100) : 0;
+
+  document.getElementById('dashStats').innerHTML = `
+    <div class="stat-mini"><div class="n">${picks.length}</div><div class="l">Total picks</div></div>
+    <div class="stat-mini"><div class="n" style="color:var(--verde)">${ac}</div><div class="l">Aciertos</div></div>
+    <div class="stat-mini"><div class="n" style="color:${tasa>=60?'var(--verde)':tasa>=40?'var(--oro)':'var(--rojo)'}">${eval_ ? tasa + '%' : '—'}</div><div class="l">Tasa global</div></div>
+    <div class="stat-mini"><div class="n" style="color:var(--oro)">${eval_ ? altaTasa + '%' : '—'}</div><div class="l">Alta confianza</div></div>
+  `;
+
+  document.getElementById('lastUpdateLabel').textContent = 'Actualización: ' + new Date().toLocaleDateString('es-MX');
+
+  const recent = [...picks].reverse().slice(0, 5);
+  document.getElementById('recentPicks').innerHTML = recent.map(p => {
+    const pt = appData.partidos.find(x => x.id === p.partidoId);
+    const resHtml = p.resultado !== null
+      ? `<span class="res-badge ${p.resultado ? 'res-v' : 'res-f'}">${p.resultado ? '✓' : '✗'}</span>`
+      : `<span class="res-badge res-p">—</span>`;
+    return `<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:var(--fondo3);border-radius:8px;margin-bottom:6px;font-size:12px">
+      <div><strong>${p.pick}</strong> <span style="color:var(--texto3)">${pt ? pt.local + ' vs ' + pt.visitante : '—'}</span></div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <span style="color:var(--verde)">${p.cuota.toFixed(2)}</span>
+        ${resHtml}
+      </div>
+    </div>`;
+  }).join('') || '<div style="color:var(--texto3);font-size:12px;text-align:center;padding:16px">No hay picks cargados</div>';
+}
+
+// ── PICKS TABLE ──
+function renderPicksTable() {
+  const body = document.getElementById('picksTableBody');
+  const ff = document.getElementById('filterFecha')?.value;
+  const fc = document.getElementById('filterConfianza')?.value;
+  const fm = document.getElementById('filterModelo')?.value;
+
+  let picks = appData.picks;
+  if (ff) picks = picks.filter(p => p.fecha === ff);
+  if (fc) picks = picks.filter(p => p.confianza === fc);
+  if (fm) picks = picks.filter(p => p.modelo === fm);
+
+  if (!picks.length) {
+    body.innerHTML = '<tr class="empty-row"><td colspan="10">No hay picks con los filtros seleccionados</td></tr>';
+    return;
+  }
+
+  body.innerHTML = picks.map(p => {
+    const pt = appData.partidos.find(x => x.id === p.partidoId);
+    const nombre = pt ? pt.local + ' vs ' + pt.visitante : '—';
+    const resHtml = p.resultado !== null
+      ? `<span class="res-badge ${p.resultado ? 'res-v' : 'res-f'}">${p.resultado ? 'ACERTADO' : 'FALLIDO'}</span>`
+      : `<span class="res-badge res-p">PENDIENTE</span>`;
+
+    return `<tr>
+      <td style="max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${nombre}">${nombre}</td>
+      <td>${p.fecha}</td>
+      <td>${p.mercado}</td>
+      <td style="color:var(--texto)">${p.pick}</td>
+      <td style="color:var(--verde)">${p.cuota.toFixed(2)}</td>
+      <td>${p.probabilidad}%</td>
+      <td><span class="conf-badge conf-${p.confianza.toLowerCase()}">${p.confianza}</span></td>
+      <td style="color:var(--texto3)">${p.modelo}</td>
+      <td>${resHtml}</td>
+      <td>
+        <button class="btn btn-sm btn-danger" onclick="deletePick('${p.id}')">✕</button>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+function deletePick(id) {
+  if (!confirm('¿Eliminar este pick?')) return;
+  appData.picks = appData.picks.filter(p => p.id !== id);
+  saveState();
+  renderPicksTable();
+  toast('Pick eliminado');
+}
+
+// ── PARTIDO SELECT ──
+function buildPartidoSelect() {
+  const sel = document.getElementById('npPartido');
+  sel.innerHTML = '<option value="">— Seleccionar partido —</option>';
+  appData.partidos.forEach(p => {
+    const opt = document.createElement('option');
+    opt.value = p.id;
+    opt.textContent = `${p.local} vs ${p.visitante} (${p.fecha})`;
+    sel.appendChild(opt);
+  });
+
+  // Fill date filter
+  const ff = document.getElementById('filterFecha');
+  const dates = [...new Set(appData.picks.map(p => p.fecha))].sort();
+  ff.innerHTML = '<option value="">Todas las fechas</option>';
+  dates.forEach(d => ff.innerHTML += `<option value="${d}">${d}</option>`);
+}
+
+function updatePartidoSelect() {
+  const fecha = document.getElementById('npFecha').value;
+  const sel = document.getElementById('npPartido');
+  sel.innerHTML = '<option value="">— Seleccionar —</option>';
+  const filtered = fecha ? appData.partidos.filter(p => p.fecha === fecha) : appData.partidos;
+  filtered.forEach(p => {
+    sel.innerHTML += `<option value="${p.id}">${p.local} vs ${p.visitante} — ${p.hora}</option>`;
+  });
+}
+
+// ── ADD PICK ──
+function addPick() {
+  const partidoId = document.getElementById('npPartido').value;
+  const tipo = document.getElementById('npTipo').value;
+  const mercado = document.getElementById('npMercado').value;
+  const pick = document.getElementById('npPick').value.trim();
+  const cuota = parseFloat(document.getElementById('npCuota').value);
+  const prob = parseInt(document.getElementById('npProb').value);
+  const confianza = document.getElementById('npConfianza').value;
+  const modelo = document.getElementById('npModelo').value;
+  const just = document.getElementById('npJust').value.trim();
+
+  if (!partidoId || !pick || isNaN(cuota) || isNaN(prob)) {
+    toast('⚠ Completa todos los campos obligatorios', true);
+    return;
+  }
+
+  const partido = appData.partidos.find(p => p.id === partidoId);
+  const newPick = {
+    id: 'p' + Date.now(),
+    partidoId,
+    fecha: partido.fecha,
+    tipo, mercado, pick, cuota, probabilidad: prob,
+    confianza, modelo, justificacion: just,
+    resultado: null
+  };
+
+  appData.picks.push(newPick);
+  saveState();
+  clearPickForm();
+  showPickTab('list');
+  renderPicksTable();
+  toast('✓ Pick agregado correctamente');
+}
+
+function clearPickForm() {
+  ['npFecha','npPick','npCuota','npProb','npJust'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = '';
+  });
+  document.getElementById('npPartido').value = '';
+}
+
+// ── RESULTS TABLE ──
+function renderResultsTable() {
+  const body = document.getElementById('resultsTableBody');
+  const pending = appData.picks;
+
+  if (!pending.length) {
+    body.innerHTML = '<tr class="empty-row"><td colspan="5">No hay picks</td></tr>';
+    return;
+  }
+
+  body.innerHTML = pending.map(p => {
+    const pt = appData.partidos.find(x => x.id === p.partidoId);
+    const nombre = pt ? pt.local + ' vs ' + pt.visitante : '—';
+    const current = p.resultado !== null
+      ? `<span class="res-badge ${p.resultado ? 'res-v' : 'res-f'}">${p.resultado ? 'ACERTADO' : 'FALLIDO'}</span>`
+      : `<span class="res-badge res-p">PENDIENTE</span>`;
+
+    return `<tr>
+      <td>${nombre}</td>
+      <td style="color:var(--texto)">${p.pick}</td>
+      <td style="color:var(--verde)">${p.cuota.toFixed(2)}</td>
+      <td>${current}</td>
+      <td>
+        <div style="display:flex;gap:6px">
+          <button class="btn btn-sm" style="color:var(--verde);border-color:rgba(0,200,83,0.3)" onclick="setResult('${p.id}', true)">✓ Acertado</button>
+          <button class="btn btn-sm btn-danger" onclick="setResult('${p.id}', false)">✗ Fallido</button>
+          <button class="btn btn-sm" onclick="setResult('${p.id}', null)">— Reset</button>
+        </div>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+function setResult(pickId, result) {
+  const p = appData.picks.find(x => x.id === pickId);
+  if (p) {
+    p.resultado = result;
+    saveState();
+    renderResultsTable();
+    updateSidebar();
+    toast(result === null ? 'Resultado reseteado' : result ? '✓ Pick marcado como acertado' : '✗ Pick marcado como fallido');
+  }
+}
+
+// ── COMBINADAS ──
+function renderCombinadas() {
+  const list = document.getElementById('combinadasList');
+  if (!appData.combinadas.length) {
+    list.innerHTML = '<div style="color:var(--texto3);text-align:center;padding:32px;font-size:13px">No hay combinadas cargadas</div>';
+    return;
+  }
+
+  list.innerHTML = appData.combinadas.map(c => {
+    const pickNames = c.picks.map(pid => {
+      const pk = appData.picks.find(x => x.id === pid);
+      return pk ? pk.pick : pid;
+    }).join(' + ');
+    const riesgoColor = c.riesgo === 'Bajo' ? 'var(--verde)' : c.riesgo === 'Medio' ? 'var(--oro)' : 'var(--rojo)';
+
+    return `<div style="background:var(--fondo3);border:1px solid var(--borde);border-radius:10px;padding:14px;margin-bottom:10px">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
+        <div>
+          <span style="font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:1px">${c.tipo.toUpperCase()} — ${c.fecha}</span>
+          <span style="font-size:20px;color:${riesgoColor};font-family:'Bebas Neue',sans-serif;margin-left:12px">${c.cuotaCombinada.toFixed(2)}</span>
+        </div>
+        <button class="btn btn-sm btn-danger" onclick="deleteCombi('${c.id}')">✕</button>
+      </div>
+      <div style="font-size:12px;color:var(--texto2);margin-bottom:6px">${c.descripcion}</div>
+      <div style="font-size:11px;color:var(--texto3)">${pickNames}</div>
+    </div>`;
+  }).join('');
+}
+
+function deleteCombi(id) {
+  if (!confirm('¿Eliminar esta combinada?')) return;
+  appData.combinadas = appData.combinadas.filter(c => c.id !== id);
+  saveState();
+  renderCombinadas();
+  toast('Combinada eliminada');
+}
+
+function buildPicksSelect() {
+  const sel = document.getElementById('ncPicks');
+  sel.innerHTML = '';
+  appData.picks.forEach(p => {
+    const pt = appData.partidos.find(x => x.id === p.partidoId);
+    const opt = document.createElement('option');
+    opt.value = p.id;
+    opt.textContent = `${pt ? pt.local + ' vs ' + pt.visitante : '—'} | ${p.pick} @ ${p.cuota.toFixed(2)}`;
+    sel.appendChild(opt);
+  });
+}
+
+function calcCuota() {
+  const sel = document.getElementById('ncPicks');
+  const selected = [...sel.selectedOptions];
+  if (!selected.length) { toast('Selecciona al menos un pick', true); return; }
+  const cuota = selected.reduce((acc, opt) => {
+    const pk = appData.picks.find(x => x.id === opt.value);
+    return acc * (pk ? pk.cuota : 1);
+  }, 1);
+  document.getElementById('ncCuota').value = cuota.toFixed(2);
+  toast(`Cuota calculada: ${cuota.toFixed(2)}`);
+}
+
+function addCombinada() {
+  const fecha = document.getElementById('ncFecha').value;
+  const tipo = document.getElementById('ncTipo').value;
+  const riesgo = document.getElementById('ncRiesgo').value;
+  const cuota = parseFloat(document.getElementById('ncCuota').value);
+  const desc = document.getElementById('ncDesc').value.trim();
+  const sel = document.getElementById('ncPicks');
+  const picks = [...sel.selectedOptions].map(o => o.value);
+
+  if (!fecha || !picks.length || isNaN(cuota)) {
+    toast('Completa todos los campos', true);
+    return;
+  }
+
+  appData.combinadas.push({
+    id: 'c' + Date.now(),
+    fecha, tipo, riesgo,
+    cuotaCombinada: cuota,
+    descripcion: desc,
+    picks
+  });
+
+  saveState();
+  showCombTab('list');
+  renderCombinadas();
+  toast('✓ Combinada agregada');
+}
+
+// ── MATCH RESULTS ──
+function renderMatchResults() {
+  const body = document.getElementById('matchResultsBody');
+  body.innerHTML = appData.partidos.map(p => {
+    const hasResult = p.resultado !== null;
+    const localVal = hasResult ? p.resultado.local : '';
+    const visVal = hasResult ? p.resultado.visitante : '';
+    const status = hasResult
+      ? `<span style="color:var(--verde);font-size:11px">FINALIZADO</span>`
+      : `<span style="color:var(--oro);font-size:11px">PENDIENTE</span>`;
+
+    return `<tr>
+      <td style="color:var(--texto)">${p.local} vs ${p.visitante}</td>
+      <td>${p.fecha}</td>
+      <td>${p.hora}</td>
+      <td>${status}</td>
+      <td>
+        <div style="display:flex;align-items:center;gap:8px">
+          <input type="number" id="rl_${p.id}" placeholder="0" min="0" max="20" value="${localVal}" style="width:56px;text-align:center">
+          <span style="color:var(--texto3)">—</span>
+          <input type="number" id="rv_${p.id}" placeholder="0" min="0" max="20" value="${visVal}" style="width:56px;text-align:center">
+        </div>
+      </td>
+      <td>
+        <button class="btn btn-sm" style="color:var(--verde)" onclick="saveMatchResult('${p.id}')">💾</button>
+        ${hasResult ? `<button class="btn btn-sm btn-danger" onclick="clearMatchResult('${p.id}')" style="margin-left:4px">✕</button>` : ''}
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+function saveMatchResult(id) {
+  const local = parseInt(document.getElementById('rl_' + id).value);
+  const visitante = parseInt(document.getElementById('rv_' + id).value);
+  if (isNaN(local) || isNaN(visitante)) { toast('Ingresa ambos marcadores', true); return; }
+  const p = appData.partidos.find(x => x.id === id);
+  if (p) {
+    p.resultado = { local, visitante };
+    saveState();
+    renderMatchResults();
+    toast(`✓ Resultado guardado: ${p.local} ${local} — ${visitante} ${p.visitante}`);
+  }
+}
+
+function clearMatchResult(id) {
+  const p = appData.partidos.find(x => x.id === id);
+  if (p) {
+    p.resultado = null;
+    saveState();
+    renderMatchResults();
+    toast('Resultado eliminado');
+  }
+}
+
+// ── MODELO ──
+function renderModelo() {
+  document.getElementById('cfgVersion').value = appData.version || 'v3';
+  document.getElementById('cfgFecha').value = appData.lastUpdate || '';
+  document.getElementById('cfgMd1').value = 12;
+  document.getElementById('cfgAmistosos').value = 0.6;
+  document.getElementById('cfgGolTardio').value = 7;
+  document.getElementById('cfgBtts').value = 6;
+  document.getElementById('cfgGapOver45').value = 80;
+  document.getElementById('cfgBloque').value = 8;
+
+  const corrs = [
+    { titulo: 'BTTS eliminado', desc: 'BTTS/Ambos marcan fuera de picks principales — 0% historial' },
+    { titulo: 'Over 4.5 directo', desc: 'Gap FIFA >80 posiciones activa Over 4.5 automáticamente' },
+    { titulo: 'Factor bloque-contragolpe', desc: '+8% equipo inferior en MD1 con gap >30 — reduce confianza favorito' },
+    { titulo: 'Under MD1 condicionado', desc: 'Aplica solo si ≥6 partidos consecutivos sin conceder' },
+    { titulo: 'Doble Oportunidad priorizada', desc: '100% tasa — mercado ancla de todas las combinadas' },
+  ];
+
+  document.getElementById('correccionesAdmin').innerHTML = corrs.map(c => `
+    <div style="display:flex;justify-content:space-between;padding:10px 12px;background:var(--fondo3);border-radius:8px;margin-bottom:8px;font-size:12px;align-items:center">
+      <div>
+        <div style="font-weight:600;color:var(--verde)">${c.titulo}</div>
+        <div style="color:var(--texto3);margin-top:2px">${c.desc}</div>
+      </div>
+      <span style="font-size:18px">✓</span>
+    </div>
+  `).join('');
+}
+
+function saveModelo() {
+  appData.version = document.getElementById('cfgVersion').value;
+  appData.lastUpdate = document.getElementById('cfgFecha').value;
+  saveState();
+  toast('✓ Configuración del modelo guardada');
+}
+
+// ── EXPORT ──
+function exportData() {
+  const json = JSON.stringify(appData, null, 2);
+  const blob = new Blob([`const MUNDIAL_DATA = ${json};`], { type: 'application/javascript' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'data.js';
+  a.click();
+  URL.revokeObjectURL(url);
+  toast('✓ Archivo data.js exportado');
+}
+
+// ── TAB HELPERS ──
+function showPickTab(id) {
+  document.querySelectorAll('#section-picks .tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('#section-picks .tab-content').forEach(c => c.classList.remove('active'));
+  document.getElementById('pickTab-' + id).classList.add('active');
+  const idx = { list:0, new:1, results:2 };
+  document.querySelectorAll('#section-picks .tab-btn')[idx[id]]?.classList.add('active');
+  if (id === 'results') renderResultsTable();
+  if (id === 'list') renderPicksTable();
+  if (id === 'new') buildPartidoSelect();
+}
+
+function showCombTab(id) {
+  document.querySelectorAll('#section-combinadas .tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('#section-combinadas .tab-content').forEach(c => c.classList.remove('active'));
+  document.getElementById('combTab-' + id).classList.add('active');
+  const idx = { list:0, new:1 };
+  document.querySelectorAll('#section-combinadas .tab-btn')[idx[id]]?.classList.add('active');
+  if (id === 'new') buildPicksSelect();
+}
+
+// ── INIT ──
+updateSidebar();
+renderDashboard();
+</script>
+</body>
+</html>
