@@ -1,361 +1,97 @@
 const MUNDIAL_DATA = {
   version: "v3",
-  lastUpdate: "2026-06-15",
+  lastUpdate: "2026-06-17",
+
+  partidosOficiales: [
+    {"id":"m001","fecha":"2026-06-11","hora":"13:00","utc_offset":"-6","local":"México","visitante":"Sudáfrica","grupo":"A","jornada":1,"sede":"Ciudad de México","resultado":null},
+    {"id":"m002","fecha":"2026-06-11","hora":"20:00","utc_offset":"-6","local":"Corea del Sur","visitante":"Chequia","grupo":"A","jornada":1,"sede":"Guadalajara","resultado":null},
+    {"id":"m003","fecha":"2026-06-18","hora":"12:00","utc_offset":"-4","local":"Chequia","visitante":"Sudáfrica","grupo":"A","jornada":8,"sede":"Atlanta","resultado":null},
+    {"id":"m004","fecha":"2026-06-18","hora":"19:00","utc_offset":"-6","local":"México","visitante":"Corea del Sur","grupo":"A","jornada":8,"sede":"Guadalajara","resultado":null},
+    {"id":"m005","fecha":"2026-06-24","hora":"19:00","utc_offset":"-6","local":"Chequia","visitante":"México","grupo":"A","jornada":14,"sede":"Ciudad de México","resultado":null},
+    {"id":"m006","fecha":"2026-06-24","hora":"19:00","utc_offset":"-6","local":"Sudáfrica","visitante":"Corea del Sur","grupo":"A","jornada":14,"sede":"Monterrey","resultado":null},
+    {"id":"m007","fecha":"2026-06-12","hora":"15:00","utc_offset":"-4","local":"Canadá","visitante":"Bosnia y Herzegovina","grupo":"B","jornada":2,"sede":"Toronto","resultado":null},
+    {"id":"m008","fecha":"2026-06-13","hora":"12:00","utc_offset":"-7","local":"Catar","visitante":"Suiza","grupo":"B","jornada":3,"sede":"San Francisco (Santa Clara)","resultado":null},
+    {"id":"m009","fecha":"2026-06-18","hora":"12:00","utc_offset":"-7","local":"Suiza","visitante":"Bosnia y Herzegovina","grupo":"B","jornada":8,"sede":"Los Ángeles (Inglewood)","resultado":null},
+    {"id":"m010","fecha":"2026-06-18","hora":"15:00","utc_offset":"-7","local":"Canadá","visitante":"Catar","grupo":"B","jornada":8,"sede":"Vancouver","resultado":null},
+    {"id":"m011","fecha":"2026-06-24","hora":"12:00","utc_offset":"-7","local":"Suiza","visitante":"Canadá","grupo":"B","jornada":14,"sede":"Vancouver","resultado":null},
+    {"id":"m012","fecha":"2026-06-24","hora":"12:00","utc_offset":"-7","local":"Bosnia y Herzegovina","visitante":"Catar","grupo":"B","jornada":14,"sede":"Seattle","resultado":null},
+    {"id":"m013","fecha":"2026-06-13","hora":"18:00","utc_offset":"-4","local":"Brasil","visitante":"Marruecos","grupo":"C","jornada":3,"sede":"Nueva York/Nueva Jersey","resultado":null},
+    {"id":"m014","fecha":"2026-06-13","hora":"21:00","utc_offset":"-4","local":"Haití","visitante":"Escocia","grupo":"C","jornada":3,"sede":"Boston (Foxborough)","resultado":null},
+    {"id":"m015","fecha":"2026-06-19","hora":"18:00","utc_offset":"-4","local":"Escocia","visitante":"Marruecos","grupo":"C","jornada":9,"sede":"Boston (Foxborough)","resultado":null},
+    {"id":"m016","fecha":"2026-06-19","hora":"20:30","utc_offset":"-4","local":"Brasil","visitante":"Haití","grupo":"C","jornada":9,"sede":"Filadelfia","resultado":null},
+    {"id":"m017","fecha":"2026-06-24","hora":"18:00","utc_offset":"-4","local":"Escocia","visitante":"Brasil","grupo":"C","jornada":14,"sede":"Miami (Miami Gardens)","resultado":null},
+    {"id":"m018","fecha":"2026-06-24","hora":"18:00","utc_offset":"-4","local":"Marruecos","visitante":"Haití","grupo":"C","jornada":14,"sede":"Atlanta","resultado":null},
+    {"id":"m019","fecha":"2026-06-12","hora":"18:00","utc_offset":"-7","local":"Estados Unidos","visitante":"Paraguay","grupo":"D","jornada":2,"sede":"Los Ángeles (Inglewood)","resultado":null},
+    {"id":"m020","fecha":"2026-06-13","hora":"21:00","utc_offset":"-7","local":"Australia","visitante":"Turquía","grupo":"D","jornada":3,"sede":"Vancouver","resultado":null},
+    {"id":"m021","fecha":"2026-06-19","hora":"12:00","utc_offset":"-7","local":"Estados Unidos","visitante":"Australia","grupo":"D","jornada":9,"sede":"Seattle","resultado":null},
+    {"id":"m022","fecha":"2026-06-19","hora":"20:00","utc_offset":"-7","local":"Turquía","visitante":"Paraguay","grupo":"D","jornada":9,"sede":"San Francisco (Santa Clara)","resultado":null},
+    {"id":"m023","fecha":"2026-06-25","hora":"19:00","utc_offset":"-7","local":"Turquía","visitante":"Estados Unidos","grupo":"D","jornada":15,"sede":"Los Ángeles (Inglewood)","resultado":null},
+    {"id":"m024","fecha":"2026-06-25","hora":"19:00","utc_offset":"-7","local":"Paraguay","visitante":"Australia","grupo":"D","jornada":15,"sede":"San Francisco (Santa Clara)","resultado":null},
+    {"id":"m025","fecha":"2026-06-14","hora":"12:00","utc_offset":"-5","local":"Alemania","visitante":"Curazao","grupo":"E","jornada":4,"sede":"Houston","resultado":null},
+    {"id":"m026","fecha":"2026-06-14","hora":"19:00","utc_offset":"-4","local":"Costa de Marfil","visitante":"Ecuador","grupo":"E","jornada":4,"sede":"Filadelfia","resultado":null},
+    {"id":"m027","fecha":"2026-06-20","hora":"16:00","utc_offset":"-4","local":"Alemania","visitante":"Costa de Marfil","grupo":"E","jornada":10,"sede":"Toronto","resultado":null},
+    {"id":"m028","fecha":"2026-06-20","hora":"19:00","utc_offset":"-5","local":"Ecuador","visitante":"Curazao","grupo":"E","jornada":10,"sede":"Kansas City","resultado":null},
+    {"id":"m029","fecha":"2026-06-25","hora":"16:00","utc_offset":"-4","local":"Curazao","visitante":"Costa de Marfil","grupo":"E","jornada":15,"sede":"Filadelfia","resultado":null},
+    {"id":"m030","fecha":"2026-06-25","hora":"16:00","utc_offset":"-4","local":"Ecuador","visitante":"Alemania","grupo":"E","jornada":15,"sede":"Nueva York/Nueva Jersey","resultado":null},
+    {"id":"m031","fecha":"2026-06-14","hora":"15:00","utc_offset":"-5","local":"Países Bajos","visitante":"Japón","grupo":"F","jornada":4,"sede":"Dallas (Arlington)","resultado":null},
+    {"id":"m032","fecha":"2026-06-14","hora":"20:00","utc_offset":"-6","local":"Suecia","visitante":"Túnez","grupo":"F","jornada":4,"sede":"Monterrey","resultado":null},
+    {"id":"m033","fecha":"2026-06-20","hora":"12:00","utc_offset":"-5","local":"Países Bajos","visitante":"Suecia","grupo":"F","jornada":10,"sede":"Houston","resultado":null},
+    {"id":"m034","fecha":"2026-06-20","hora":"22:00","utc_offset":"-6","local":"Túnez","visitante":"Japón","grupo":"F","jornada":10,"sede":"Monterrey","resultado":null},
+    {"id":"m035","fecha":"2026-06-25","hora":"18:00","utc_offset":"-5","local":"Japón","visitante":"Suecia","grupo":"F","jornada":15,"sede":"Dallas (Arlington)","resultado":null},
+    {"id":"m036","fecha":"2026-06-25","hora":"18:00","utc_offset":"-5","local":"Túnez","visitante":"Países Bajos","grupo":"F","jornada":15,"sede":"Kansas City","resultado":null},
+    {"id":"m037","fecha":"2026-06-15","hora":"12:00","utc_offset":"-7","local":"Bélgica","visitante":"Egipto","grupo":"G","jornada":5,"sede":"Seattle","resultado":null},
+    {"id":"m038","fecha":"2026-06-15","hora":"18:00","utc_offset":"-7","local":"Irán","visitante":"Nueva Zelanda","grupo":"G","jornada":5,"sede":"Los Ángeles (Inglewood)","resultado":null},
+    {"id":"m039","fecha":"2026-06-21","hora":"12:00","utc_offset":"-7","local":"Bélgica","visitante":"Irán","grupo":"G","jornada":11,"sede":"Los Ángeles (Inglewood)","resultado":null},
+    {"id":"m040","fecha":"2026-06-21","hora":"18:00","utc_offset":"-7","local":"Nueva Zelanda","visitante":"Egipto","grupo":"G","jornada":11,"sede":"Vancouver","resultado":null},
+    {"id":"m041","fecha":"2026-06-26","hora":"20:00","utc_offset":"-7","local":"Egipto","visitante":"Irán","grupo":"G","jornada":16,"sede":"Seattle","resultado":null},
+    {"id":"m042","fecha":"2026-06-26","hora":"20:00","utc_offset":"-7","local":"Nueva Zelanda","visitante":"Bélgica","grupo":"G","jornada":16,"sede":"Vancouver","resultado":null},
+    {"id":"m043","fecha":"2026-06-15","hora":"12:00","utc_offset":"-4","local":"España","visitante":"Cabo Verde","grupo":"H","jornada":5,"sede":"Atlanta","resultado":null},
+    {"id":"m044","fecha":"2026-06-15","hora":"18:00","utc_offset":"-4","local":"Arabia Saudita","visitante":"Uruguay","grupo":"H","jornada":5,"sede":"Miami (Miami Gardens)","resultado":null},
+    {"id":"m045","fecha":"2026-06-21","hora":"12:00","utc_offset":"-4","local":"España","visitante":"Arabia Saudita","grupo":"H","jornada":11,"sede":"Atlanta","resultado":null},
+    {"id":"m046","fecha":"2026-06-21","hora":"18:00","utc_offset":"-4","local":"Uruguay","visitante":"Cabo Verde","grupo":"H","jornada":11,"sede":"Miami (Miami Gardens)","resultado":null},
+    {"id":"m047","fecha":"2026-06-26","hora":"19:00","utc_offset":"-5","local":"Cabo Verde","visitante":"Arabia Saudita","grupo":"H","jornada":16,"sede":"Houston","resultado":null},
+    {"id":"m048","fecha":"2026-06-26","hora":"18:00","utc_offset":"-6","local":"Uruguay","visitante":"España","grupo":"H","jornada":16,"sede":"Guadalajara","resultado":null},
+    {"id":"m049","fecha":"2026-06-16","hora":"15:00","utc_offset":"-4","local":"Francia","visitante":"Senegal","grupo":"I","jornada":6,"sede":"Nueva York/Nueva Jersey","resultado":null},
+    {"id":"m050","fecha":"2026-06-16","hora":"18:00","utc_offset":"-4","local":"Irak","visitante":"Noruega","grupo":"I","jornada":6,"sede":"Boston (Foxborough)","resultado":null},
+    {"id":"m051","fecha":"2026-06-22","hora":"17:00","utc_offset":"-4","local":"Francia","visitante":"Irak","grupo":"I","jornada":12,"sede":"Filadelfia","resultado":null},
+    {"id":"m052","fecha":"2026-06-22","hora":"20:00","utc_offset":"-4","local":"Noruega","visitante":"Senegal","grupo":"I","jornada":12,"sede":"Nueva York/Nueva Jersey","resultado":null},
+    {"id":"m053","fecha":"2026-06-26","hora":"15:00","utc_offset":"-4","local":"Noruega","visitante":"Francia","grupo":"I","jornada":16,"sede":"Boston (Foxborough)","resultado":null},
+    {"id":"m054","fecha":"2026-06-26","hora":"15:00","utc_offset":"-4","local":"Senegal","visitante":"Irak","grupo":"I","jornada":16,"sede":"Toronto","resultado":null},
+    {"id":"m055","fecha":"2026-06-16","hora":"20:00","utc_offset":"-5","local":"Argentina","visitante":"Argelia","grupo":"J","jornada":6,"sede":"Kansas City","resultado":null},
+    {"id":"m056","fecha":"2026-06-16","hora":"21:00","utc_offset":"-7","local":"Austria","visitante":"Jordania","grupo":"J","jornada":6,"sede":"San Francisco (Santa Clara)","resultado":null},
+    {"id":"m057","fecha":"2026-06-22","hora":"12:00","utc_offset":"-5","local":"Argentina","visitante":"Austria","grupo":"J","jornada":12,"sede":"Dallas (Arlington)","resultado":null},
+    {"id":"m058","fecha":"2026-06-22","hora":"20:00","utc_offset":"-7","local":"Jordania","visitante":"Argelia","grupo":"J","jornada":12,"sede":"San Francisco (Santa Clara)","resultado":null},
+    {"id":"m059","fecha":"2026-06-27","hora":"21:00","utc_offset":"-5","local":"Argelia","visitante":"Austria","grupo":"J","jornada":17,"sede":"Kansas City","resultado":null},
+    {"id":"m060","fecha":"2026-06-27","hora":"21:00","utc_offset":"-5","local":"Jordania","visitante":"Argentina","grupo":"J","jornada":17,"sede":"Dallas (Arlington)","resultado":null},
+    {"id":"m061","fecha":"2026-06-17","hora":"12:00","utc_offset":"-5","local":"Portugal","visitante":"RD Congo","grupo":"K","jornada":7,"sede":"Houston","resultado":null},
+    {"id":"m062","fecha":"2026-06-17","hora":"20:00","utc_offset":"-6","local":"Uzbekistán","visitante":"Colombia","grupo":"K","jornada":7,"sede":"Ciudad de México","resultado":null},
+    {"id":"m063","fecha":"2026-06-23","hora":"12:00","utc_offset":"-5","local":"Portugal","visitante":"Uzbekistán","grupo":"K","jornada":13,"sede":"Houston","resultado":null},
+    {"id":"m064","fecha":"2026-06-23","hora":"20:00","utc_offset":"-6","local":"Colombia","visitante":"RD Congo","grupo":"K","jornada":13,"sede":"Guadalajara","resultado":null},
+    {"id":"m065","fecha":"2026-06-27","hora":"19:30","utc_offset":"-4","local":"Colombia","visitante":"Portugal","grupo":"K","jornada":17,"sede":"Miami (Miami Gardens)","resultado":null},
+    {"id":"m066","fecha":"2026-06-27","hora":"19:30","utc_offset":"-4","local":"RD Congo","visitante":"Uzbekistán","grupo":"K","jornada":17,"sede":"Atlanta","resultado":null},
+    {"id":"m067","fecha":"2026-06-17","hora":"15:00","utc_offset":"-5","local":"Inglaterra","visitante":"Croacia","grupo":"L","jornada":7,"sede":"Dallas (Arlington)","resultado":null},
+    {"id":"m068","fecha":"2026-06-17","hora":"19:00","utc_offset":"-4","local":"Ghana","visitante":"Panamá","grupo":"L","jornada":7,"sede":"Toronto","resultado":null},
+    {"id":"m069","fecha":"2026-06-23","hora":"16:00","utc_offset":"-4","local":"Inglaterra","visitante":"Ghana","grupo":"L","jornada":13,"sede":"Boston (Foxborough)","resultado":null},
+    {"id":"m070","fecha":"2026-06-23","hora":"19:00","utc_offset":"-4","local":"Panamá","visitante":"Croacia","grupo":"L","jornada":13,"sede":"Toronto","resultado":null},
+    {"id":"m071","fecha":"2026-06-27","hora":"17:00","utc_offset":"-4","local":"Panamá","visitante":"Inglaterra","grupo":"L","jornada":17,"sede":"Nueva York/Nueva Jersey","resultado":null},
+    {"id":"m072","fecha":"2026-06-27","hora":"17:00","utc_offset":"-4","local":"Croacia","visitante":"Ghana","grupo":"L","jornada":17,"sede":"Filadelfia","resultado":null}
+  ],
 
   grupos: {
-    A: { equipos: ["Qatar", "Ecuador", "Senegal", "Países Bajos"] },
-    B: { equipos: ["Inglaterra", "Irán", "EE.UU.", "Gales"] },
-    C: { equipos: ["Argentina", "Arabia Saudita", "México", "Polonia"] },
-    D: { equipos: ["Francia", "Australia", "Dinamarca", "Túnez"] },
-    E: { equipos: ["España", "Costa Rica", "Alemania", "Japón"] },
-    F: { equipos: ["Bélgica", "Canadá", "Marruecos", "Croacia"] },
-    G: { equipos: ["Brasil", "Serbia", "Suiza", "Camerún"] },
-    H: { equipos: ["Portugal", "Ghana", "Uruguay", "Corea del Sur"] },
-    I: { equipos: ["México", "Bolivia", "Senegal", "Australia"] },
-    J: { equipos: ["Argentina", "Chile", "Colombia", "Panamá"] },
-    K: { equipos: ["Brasil", "Nigeria", "Ecuador", "Países Bajos"] },
-    L: { equipos: ["España", "Argelia", "Japón", "Escocia"] },
+    A: ["México", "Sudáfrica", "Corea del Sur", "Chequia"],
+    B: ["Canadá", "Bosnia y Herzegovina", "Catar", "Suiza"],
+    C: ["Brasil", "Marruecos", "Haití", "Escocia"],
+    D: ["Estados Unidos", "Paraguay", "Australia", "Turquía"],
+    E: ["Alemania", "Curazao", "Costa de Marfil", "Ecuador"],
+    F: ["Países Bajos", "Japón", "Suecia", "Túnez"],
+    G: ["Bélgica", "Egipto", "Irán", "Nueva Zelanda"],
+    H: ["España", "Cabo Verde", "Arabia Saudita", "Uruguay"],
+    I: ["Francia", "Senegal", "Irak", "Noruega"],
+    J: ["Argentina", "Argelia", "Austria", "Jordania"],
+    K: ["Portugal", "RD Congo", "Uzbekistán", "Colombia"],
+    L: ["Inglaterra", "Croacia", "Ghana", "Panamá"]
   },
 
-  partidos: [
-    // JORNADA 1 - 12 JUN
-    {
-      id: "m001", fecha: "2026-06-12", hora: "18:00",
-      local: "México", visitante: "Bolivia", grupo: "I", jornada: 1,
-      sede: "Estadio Azteca", resultado: null
-    },
-    {
-      id: "m002", fecha: "2026-06-12", hora: "21:00",
-      local: "Senegal", visitante: "Australia", grupo: "I", jornada: 1,
-      sede: "SoFi Stadium", resultado: null
-    },
-    {
-      id: "m003", fecha: "2026-06-12", hora: "15:00",
-      local: "Argentina", visitante: "Chile", grupo: "J", jornada: 1,
-      sede: "MetLife Stadium", resultado: null
-    },
-    {
-      id: "m004", fecha: "2026-06-12", hora: "21:00",
-      local: "Colombia", visitante: "Panamá", grupo: "J", jornada: 1,
-      sede: "AT&T Stadium", resultado: null
-    },
-
-    // JORNADA 1 - 13 JUN
-    {
-      id: "m005", fecha: "2026-06-13", hora: "15:00",
-      local: "Brasil", visitante: "Nigeria", grupo: "K", jornada: 1,
-      sede: "Hard Rock Stadium", resultado: null
-    },
-    {
-      id: "m006", fecha: "2026-06-13", hora: "18:00",
-      local: "Ecuador", visitante: "Países Bajos", grupo: "K", jornada: 1,
-      sede: "Levi's Stadium", resultado: null
-    },
-    {
-      id: "m007", fecha: "2026-06-13", hora: "21:00",
-      local: "España", visitante: "Argelia", grupo: "L", jornada: 1,
-      sede: "Rose Bowl", resultado: null
-    },
-    {
-      id: "m008", fecha: "2026-06-13", hora: "21:00",
-      local: "Japón", visitante: "Escocia", grupo: "L", jornada: 1,
-      sede: "Empower Field", resultado: null
-    },
-
-    // JORNADA 1 - 14 JUN
-    {
-      id: "m009", fecha: "2026-06-14", hora: "15:00",
-      local: "EE.UU.", visitante: "Serbia", grupo: "A1", jornada: 1,
-      sede: "MetLife Stadium", resultado: null
-    },
-    {
-      id: "m010", fecha: "2026-06-14", hora: "18:00",
-      local: "Portugal", visitante: "Hungría", grupo: "A1", jornada: 1,
-      sede: "Gillette Stadium", resultado: null
-    },
-    {
-      id: "m011", fecha: "2026-06-14", hora: "21:00",
-      local: "Francia", visitante: "Bélgica", grupo: "B1", jornada: 1,
-      sede: "Lumen Field", resultado: null
-    },
-    {
-      id: "m012", fecha: "2026-06-14", hora: "21:00",
-      local: "Alemania", visitante: "Suiza", grupo: "C1", jornada: 1,
-      sede: "Lincoln Financial Field", resultado: null
-    },
-
-    // JORNADA 1 - 15 JUN (picks ya generados)
-    {
-      id: "m013", fecha: "2026-06-15", hora: "15:00",
-      local: "Marruecos", visitante: "Eslovaquia", grupo: "D1", jornada: 1,
-      sede: "AT&T Stadium", resultado: null
-    },
-    {
-      id: "m014", fecha: "2026-06-15", hora: "18:00",
-      local: "Uruguay", visitante: "Polonia", grupo: "D1", jornada: 1,
-      sede: "Hard Rock Stadium", resultado: null
-    },
-    {
-      id: "m015", fecha: "2026-06-15", hora: "21:00",
-      local: "Italia", visitante: "Costa Rica", grupo: "E1", jornada: 1,
-      sede: "Rose Bowl", resultado: null
-    },
-    {
-      id: "m016", fecha: "2026-06-15", hora: "21:00",
-      local: "Croacia", visitante: "Irlanda", grupo: "E1", jornada: 1,
-      sede: "SoFi Stadium", resultado: null
-    },
-    {
-      id: "m017", fecha: "2026-06-15", hora: "21:00",
-      local: "Camerún", visitante: "Venezuela", grupo: "F1", jornada: 1,
-      sede: "Empower Field", resultado: null
-    },
-    {
-      id: "m018", fecha: "2026-06-15", hora: "21:00",
-      local: "Dinamarca", visitante: "Perú", grupo: "F1", jornada: 1,
-      sede: "Levi's Stadium", resultado: null
-    },
-
-    // JORNADA 1 - 16 JUN
-    {
-      id: "m019", fecha: "2026-06-16", hora: "18:00",
-      local: "Inglaterra", visitante: "Argelia", grupo: "G1", jornada: 1,
-      sede: "MetLife Stadium", resultado: null
-    },
-    {
-      id: "m020", fecha: "2026-06-16", hora: "21:00",
-      local: "Países Bajos", visitante: "Rumania", grupo: "G1", jornada: 1,
-      sede: "Hard Rock Stadium", resultado: null
-    },
-    {
-      id: "m021", fecha: "2026-06-16", hora: "15:00",
-      local: "Arabia Saudita", visitante: "DR Congo", grupo: "H1", jornada: 1,
-      sede: "AT&T Stadium", resultado: null
-    },
-    {
-      id: "m022", fecha: "2026-06-16", hora: "21:00",
-      local: "Nueva Zelanda", visitante: "Honduras", grupo: "H1", jornada: 1,
-      sede: "Gillette Stadium", resultado: null
-    },
-  ],
-
-  picks: [
-    // FECHA 2026-06-12
-    {
-      id: "p001", partidoId: "m001", fecha: "2026-06-12",
-      tipo: "Resultado", mercado: "Doble Oportunidad",
-      pick: "México o Empate", cuota: 1.20,
-      confianza: "Alta", probabilidad: 87, modelo: "v2",
-      justificacion: "México en casa, FIFA gap enorme. Factor sede + jerarquía.",
-      resultado: null
-    },
-    {
-      id: "p002", partidoId: "m001", fecha: "2026-06-12",
-      tipo: "Goles", mercado: "Over 2.5",
-      pick: "Más de 2.5 goles", cuota: 1.65,
-      confianza: "Media", probabilidad: 62, modelo: "v2",
-      justificacion: "México sin bloqueo defensivo esperado vs Bolivia.",
-      resultado: null
-    },
-    {
-      id: "p003", partidoId: "m003", fecha: "2026-06-12",
-      tipo: "Resultado", mercado: "Doble Oportunidad",
-      pick: "Argentina o Empate", cuota: 1.18,
-      confianza: "Alta", probabilidad: 89, modelo: "v2",
-      justificacion: "Argentina favorita clara. Chile en reconstrucción.",
-      resultado: null
-    },
-
-    // FECHA 2026-06-13
-    {
-      id: "p004", partidoId: "m005", fecha: "2026-06-13",
-      tipo: "Resultado", mercado: "Doble Oportunidad",
-      pick: "Brasil o Empate", cuota: 1.22,
-      confianza: "Alta", probabilidad: 85, modelo: "v2",
-      justificacion: "Brasil potencia vs Nigeria. Factor MD1 aplicado.",
-      resultado: null
-    },
-    {
-      id: "p005", partidoId: "m007", fecha: "2026-06-13",
-      tipo: "Resultado", mercado: "Victoria local",
-      pick: "España gana", cuota: 1.35,
-      confianza: "Alta", probabilidad: 78, modelo: "v2",
-      justificacion: "España top 5 FIFA vs Argelia. Diferencia clara de nivel.",
-      resultado: null
-    },
-    {
-      id: "p006", partidoId: "m008", fecha: "2026-06-13",
-      tipo: "Resultado", mercado: "Doble Oportunidad",
-      pick: "Japón o Empate", cuota: 1.40,
-      confianza: "Media", probabilidad: 68, modelo: "v2",
-      justificacion: "Japón solidez defensiva conocida. Escocia irregular.",
-      resultado: null
-    },
-
-    // FECHA 2026-06-14
-    {
-      id: "p007", partidoId: "m011", fecha: "2026-06-14",
-      tipo: "Resultado", mercado: "Doble Oportunidad",
-      pick: "Francia o Empate", cuota: 1.25,
-      confianza: "Alta", probabilidad: 82, modelo: "v2",
-      justificacion: "Francia campeona vigente. Bélgica en declive generacional.",
-      resultado: null
-    },
-    {
-      id: "p008", partidoId: "m012", fecha: "2026-06-14",
-      tipo: "Resultado", mercado: "Doble Oportunidad",
-      pick: "Alemania o Empate", cuota: 1.30,
-      confianza: "Alta", probabilidad: 80, modelo: "v2",
-      justificacion: "Alemania en casa (sede USA). Suiza sólida pero limitada.",
-      resultado: null
-    },
-
-    // FECHA 2026-06-15
-    {
-      id: "p009", partidoId: "m013", fecha: "2026-06-15",
-      tipo: "Resultado", mercado: "Doble Oportunidad",
-      pick: "Marruecos o Empate", cuota: 1.35,
-      confianza: "Alta", probabilidad: 77, modelo: "v3",
-      justificacion: "Marruecos semifinalista Qatar 2022. Eslovaquia gap FIFA +60.",
-      resultado: null
-    },
-    {
-      id: "p010", partidoId: "m013", fecha: "2026-06-15",
-      tipo: "Goles", mercado: "Under 2.5",
-      pick: "Menos de 2.5 goles", cuota: 1.80,
-      confianza: "Media", probabilidad: 65, modelo: "v3",
-      justificacion: "MD1 táctica cautelosa. Marruecos preferirá no arriesgar.",
-      resultado: null
-    },
-    {
-      id: "p011", partidoId: "m014", fecha: "2026-06-15",
-      tipo: "Resultado", mercado: "Doble Oportunidad",
-      pick: "Uruguay o Empate", cuota: 1.38,
-      confianza: "Alta", probabilidad: 76, modelo: "v3",
-      justificacion: "Uruguay solidez histórica en MD1. Polonia sin Lewandowski top form.",
-      resultado: null
-    },
-    {
-      id: "p012", partidoId: "m014", fecha: "2026-06-15",
-      tipo: "Goles", mercado: "Under 2.5",
-      pick: "Menos de 2.5 goles", cuota: 1.75,
-      confianza: "Media", probabilidad: 63, modelo: "v3",
-      justificacion: "Uruguay defensa histórica, MD1 = bloque bajo esperado.",
-      resultado: null
-    },
-    {
-      id: "p013", partidoId: "m015", fecha: "2026-06-15",
-      tipo: "Resultado", mercado: "Doble Oportunidad",
-      pick: "Italia o Empate", cuota: 1.22,
-      confianza: "Alta", probabilidad: 84, modelo: "v3",
-      justificacion: "Italia gap FIFA >80 vs Costa Rica. Favorito estructural.",
-      resultado: null
-    },
-    {
-      id: "p014", partidoId: "m015", fecha: "2026-06-15",
-      tipo: "Goles", mercado: "Over 4.5",
-      pick: "Más de 4.5 goles", cuota: 3.20,
-      confianza: "Media", probabilidad: 38, modelo: "v3",
-      justificacion: "Gap FIFA >80 = Over 4.5 directo por modelo v3.",
-      resultado: null
-    },
-    {
-      id: "p015", partidoId: "m016", fecha: "2026-06-15",
-      tipo: "Resultado", mercado: "Doble Oportunidad",
-      pick: "Croacia o Empate", cuota: 1.35,
-      confianza: "Alta", probabilidad: 78, modelo: "v3",
-      justificacion: "Croacia finalista Qatar, plantilla experimentada vs Irlanda.",
-      resultado: null
-    },
-    {
-      id: "p016", partidoId: "m017", fecha: "2026-06-15",
-      tipo: "Resultado", mercado: "Doble Oportunidad",
-      pick: "Camerún o Empate", cuota: 1.50,
-      confianza: "Media", probabilidad: 66, modelo: "v3",
-      justificacion: "Camerún conoce mundiales. Venezuela debutante a este nivel.",
-      resultado: null
-    },
-    {
-      id: "p017", partidoId: "m018", fecha: "2026-06-15",
-      tipo: "Resultado", mercado: "Doble Oportunidad",
-      pick: "Dinamarca o Empate", cuota: 1.30,
-      confianza: "Alta", probabilidad: 80, modelo: "v3",
-      justificacion: "Dinamarca sólida en mundiales. Perú vuelta histórica.",
-      resultado: null
-    },
-
-    // FECHA 2026-06-16
-    {
-      id: "p018", partidoId: "m019", fecha: "2026-06-16",
-      tipo: "Resultado", mercado: "Doble Oportunidad",
-      pick: "Inglaterra o Empate", cuota: 1.25,
-      confianza: "Alta", probabilidad: 83, modelo: "v3",
-      justificacion: "Inglaterra top 5 FIFA. Argelia en primera ronda histórica.",
-      resultado: null
-    },
-    {
-      id: "p019", partidoId: "m020", fecha: "2026-06-16",
-      tipo: "Resultado", mercado: "Doble Oportunidad",
-      pick: "Países Bajos o Empate", cuota: 1.28,
-      confianza: "Alta", probabilidad: 81, modelo: "v3",
-      justificacion: "Países Bajos clasificó fuerte. Rumania buena sorpresa.",
-      resultado: null
-    },
-    {
-      id: "p020", partidoId: "m021", fecha: "2026-06-16",
-      tipo: "Resultado", mercado: "Doble Oportunidad",
-      pick: "Arabia Saudita o Empate", cuota: 1.45,
-      confianza: "Media", probabilidad: 67, modelo: "v3",
-      justificacion: "Arabia Saudita mejorada desde Qatar. DR Congo debut mundial.",
-      resultado: null
-    },
-  ],
-
-  combinadas: [
-    {
-      id: "c001", fecha: "2026-06-15", tipo: "Conservadora",
-      picks: ["p009", "p013", "p017"],
-      cuotaCombinada: 2.38,
-      descripcion: "Marruecos/Empate + Italia/Empate + Dinamarca/Empate",
-      riesgo: "Bajo"
-    },
-    {
-      id: "c002", fecha: "2026-06-15", tipo: "Equilibrada",
-      picks: ["p009", "p011", "p015", "p017"],
-      cuotaCombinada: 3.91,
-      descripcion: "4 doble oportunidad MD1 — máximo historial de acierto",
-      riesgo: "Medio"
-    },
-    {
-      id: "c003", fecha: "2026-06-15", tipo: "Agresiva",
-      picks: ["p013", "p015", "p014"],
-      cuotaCombinada: 8.66,
-      descripcion: "Italia/Empate + Croacia/Empate + Over 4.5 Italia",
-      riesgo: "Alto"
-    },
-    {
-      id: "c004", fecha: "2026-06-16", tipo: "Conservadora",
-      picks: ["p018", "p019"],
-      cuotaCombinada: 1.98,
-      descripcion: "Inglaterra/Empate + Países Bajos/Empate",
-      riesgo: "Bajo"
-    },
-    {
-      id: "c005", fecha: "2026-06-16", tipo: "Equilibrada",
-      picks: ["p018", "p019", "p020"],
-      cuotaCombinada: 2.88,
-      descripcion: "3 doble oportunidad día 16 — base sólida v3",
-      riesgo: "Medio"
-    },
-  ],
-
-  stats: {
-    totalPicks: 20,
-    evaluados: 0,
-    acertados: 0,
-    fallidos: 0,
-    tasaGlobal: 0,
-    mejorMercado: "Doble Oportunidad",
-    tasaMejorMercado: 100
-  }
+  picks: [],
+  combinadas: []
 };
