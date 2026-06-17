@@ -245,10 +245,6 @@
     padding-top: 8px; border-top: 1px solid var(--borde); line-height: 1.5;
   }
 
-  .pick-resultado { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 4px; letter-spacing: 1px; margin-top: 6px; }
-  .resultado-verde { background: rgba(0,200,83,0.15); color: var(--verde); }
-  .resultado-rojo { background: rgba(229,57,53,0.15); color: var(--rojo); }
-
   .combinada-card {
     background: var(--fondo2); border: 1px solid var(--borde);
     border-radius: var(--radio-lg); padding: 18px; margin-bottom: 12px;
@@ -266,11 +262,6 @@
   .combinada-desc { font-size: 13px; color: var(--texto2); margin-bottom: 12px; line-height: 1.5; }
   .combinada-cuota-big { font-family: 'Bebas Neue', sans-serif; font-size: 40px; color: var(--oro); letter-spacing: 2px; line-height: 1; }
   .combinada-cuota-label { font-size: 11px; color: var(--texto3); letter-spacing: 1px; }
-
-  .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 2rem; }
-  .stat-box { background: var(--fondo2); border: 1px solid var(--borde); border-radius: var(--radio); padding: 16px; text-align: center; }
-  .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 36px; line-height: 1; color: var(--verde); }
-  .stat-lbl { font-size: 11px; color: var(--texto3); letter-spacing: 1.5px; text-transform: uppercase; margin-top: 4px; }
 
   .filter-bar { display: flex; gap: 8px; margin-bottom: 1.5rem; flex-wrap: wrap; }
   .filter-btn {
@@ -325,7 +316,6 @@
       <button class="active" onclick="showTab('picks')">Picks</button>
       <button onclick="showTab('combinadas')">Combinadas</button>
       <button onclick="showTab('calendario')">Calendario</button>
-      <button onclick="showTab('estadisticas')">Estadísticas</button>
     </nav>
     <span class="sync-badge" id="syncBadge" title="Resultados sincronizados automáticamente"><span class="sync-dot"></span> Resultados en vivo</span>
   </div>
@@ -335,7 +325,6 @@
   <button class="filter-btn active" onclick="showTab('picks')">Picks</button>
   <button class="filter-btn" onclick="showTab('combinadas')">Combinadas</button>
   <button class="filter-btn" onclick="showTab('calendario')">Calendario</button>
-  <button class="filter-btn" onclick="showTab('estadisticas')">Stats</button>
 </div>
 
 <div class="hero">
@@ -343,8 +332,6 @@
   <div class="hero-sub">Picks profesionales · Modelo estadístico v3</div>
   <div class="hero-stats">
     <div class="hero-stat"><div class="val" id="totalPicksHero">0</div><div class="lbl">Total Picks</div></div>
-    <div class="hero-stat"><div class="val" id="aciertosHero">—</div><div class="lbl">Aciertos</div></div>
-    <div class="hero-stat"><div class="val" id="tasaHero">—%</div><div class="lbl">Tasa Global</div></div>
     <div class="hero-stat"><div class="val" id="combinadasHero">0</div><div class="lbl">Combinadas</div></div>
   </div>
 </div>
@@ -370,13 +357,6 @@
       <button class="filter-btn active" onclick="filterCal('all', this)">Todos</button>
     </div>
     <div id="calendarioContainer"></div>
-  </div>
-
-  <div id="tab-estadisticas" class="tab-panel">
-    <div class="section-title">Rendimiento del Modelo</div>
-    <div class="stats-grid" id="statsGrid"></div>
-    <div class="section-title" style="margin-top:2rem">Detalle por mercado</div>
-    <div id="mercadoStats"></div>
   </div>
 
 </main>
@@ -505,7 +485,7 @@ function showTab(tab) {
   document.getElementById('tab-' + tab).classList.add('active');
   document.querySelectorAll('#mainNav button').forEach(b => b.classList.remove('active'));
   const btns = document.querySelectorAll('#mainNav button');
-  const tabMap = { picks:0, combinadas:1, calendario:2, estadisticas:3 };
+  const tabMap = { picks:0, combinadas:1, calendario:2 };
   if (btns[tabMap[tab]]) btns[tabMap[tab]].classList.add('active');
   document.querySelectorAll('#mobileNav .filter-btn').forEach(b => b.classList.remove('active'));
   document.querySelectorAll('#mobileNav .filter-btn')[tabMap[tab]]?.classList.add('active');
@@ -600,9 +580,6 @@ function renderPicks() {
 
 function buildPickCard(pick, partido) {
   const confLower = (pick.confianza || 'media').toLowerCase();
-  const resHtml = pick.resultado !== null && pick.resultado !== undefined
-    ? `<div class="pick-resultado ${pick.resultado ? 'resultado-verde' : 'resultado-rojo'}">${pick.resultado ? '✓ ACERTADO' : '✗ FALLIDO'}</div>`
-    : '';
 
   return `
     <div class="pick-card confianza-${confLower}">
@@ -618,7 +595,6 @@ function buildPickCard(pick, partido) {
         <div class="pick-prob-label">${pick.probabilidad}% modelo</div>
       </div>
       <div class="pick-just">${pick.justificacion || ''}</div>
-      ${resHtml}
     </div>
   `;
 }
@@ -742,59 +718,9 @@ function renderCalendar(dateFilter = 'all') {
   });
 }
 
-function renderStats() {
-  const picks = appData.picks;
-  const evaluados = picks.filter(p => p.resultado !== null && p.resultado !== undefined).length;
-  const acertados = picks.filter(p => p.resultado === true).length;
-  const tasa = evaluados ? Math.round((acertados/evaluados)*100) : 0;
-
-  const alta = picks.filter(p => p.confianza === 'Alta');
-  const altaEval = alta.filter(p => p.resultado !== null && p.resultado !== undefined).length;
-  const altaAc = alta.filter(p => p.resultado === true).length;
-  const altaTasa = altaEval ? Math.round((altaAc/altaEval)*100) : 0;
-
-  document.getElementById('statsGrid').innerHTML = `
-    <div class="stat-box"><div class="stat-num">${picks.length}</div><div class="stat-lbl">Total picks</div></div>
-    <div class="stat-box"><div class="stat-num">${evaluados}</div><div class="stat-lbl">Evaluados</div></div>
-    <div class="stat-box"><div class="stat-num" style="color:var(--verde)">${acertados}</div><div class="stat-lbl">Aciertos</div></div>
-    <div class="stat-box"><div class="stat-num" style="color:var(--rojo)">${evaluados - acertados}</div><div class="stat-lbl">Fallidos</div></div>
-    <div class="stat-box"><div class="stat-num">${evaluados ? tasa+'%' : '—'}</div><div class="stat-lbl">Tasa global</div></div>
-    <div class="stat-box"><div class="stat-num">${altaEval ? altaTasa+'%' : '—'}</div><div class="stat-lbl">Tasa alta conf.</div></div>
-  `;
-
-  document.getElementById('totalPicksHero').textContent = picks.length;
+function renderHeroCounts() {
+  document.getElementById('totalPicksHero').textContent = appData.picks.length;
   document.getElementById('combinadasHero').textContent = appData.combinadas.length;
-  document.getElementById('aciertosHero').textContent = evaluados ? acertados : '—';
-  document.getElementById('tasaHero').textContent = evaluados ? tasa + '%' : '—%';
-
-  const mercados = {};
-  picks.forEach(p => {
-    if (!mercados[p.mercado]) mercados[p.mercado] = { total: 0, eval: 0, ac: 0 };
-    mercados[p.mercado].total++;
-    if (p.resultado !== null && p.resultado !== undefined) {
-      mercados[p.mercado].eval++;
-      if (p.resultado === true) mercados[p.mercado].ac++;
-    }
-  });
-
-  let mHtml = '';
-  Object.keys(mercados).forEach(m => {
-    const info = mercados[m];
-    const tasaM = info.eval ? Math.round((info.ac/info.eval)*100) : null;
-    mHtml += `
-      <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:var(--fondo2);border:1px solid var(--borde);border-radius:8px;margin-bottom:8px">
-        <div>
-          <div style="font-size:14px;font-weight:500">${m}</div>
-          <div style="font-size:11px;color:var(--texto3);margin-top:2px">${info.total} pick${info.total>1?'s':''}</div>
-        </div>
-        <div style="text-align:right">
-          <div style="font-family:'Bebas Neue',sans-serif;font-size:24px;color:${tasaM!==null?(tasaM>=60?'var(--verde)':tasaM>=40?'var(--oro)':'var(--rojo)'):'var(--texto3)'}">${tasaM !== null ? tasaM + '%' : '—'}</div>
-          <div style="font-size:10px;color:var(--texto3)">ACIERTO</div>
-        </div>
-      </div>
-    `;
-  });
-  document.getElementById('mercadoStats').innerHTML = mHtml || '<div class="empty-state">Sin datos de mercados todavía.</div>';
 }
 
 async function init() {
@@ -807,7 +733,7 @@ async function init() {
   renderPicks();
   renderCombinadas();
   renderCalendar();
-  renderStats();
+  renderHeroCounts();
 }
 
 init();
