@@ -1,301 +1,574 @@
 {
-  "meta": {
-    "torneo": "Copa Mundial FIFA 2026",
-    "modelo_version": "v3.1",
-    "fecha_generacion": "2026-06-17",
-    "idioma": "es",
-    "moneda_cuotas": "decimal_europea"
-  },
-
-  "auditoria_jornada_anterior": {
-    "fecha": "2026-06-16",
-    "resumen": {
-      "picks_evaluados": 12,
-      "aciertos": 11,
-      "fallos": 1,
-      "tasa_acierto_pct": 91.7
-    },
-    "partidos": [
-      {
-        "match_id": "m_arg_alg_16jun",
-        "partido": "Argentina vs Argelia",
-        "resultado_real": "3-0",
-        "goleador": "Lionel Messi (hat-trick, min 17, 60, 76)",
-        "picks": [
-          { "pick": "Menos de 2.5 goles", "estado": "FALLO", "nota": "Se anotaron 3 goles, todos de Messi" },
-          { "pick": "Doble oportunidad 1X (Argentina o empate)", "estado": "ACIERTO", "nota": "" },
-          { "pick": "Victoria Argentina (directa)", "estado": "ACIERTO", "nota": "" }
-        ]
-      },
-      {
-        "match_id": "m_fra_sen_16jun",
-        "partido": "Francia vs Senegal",
-        "resultado_real": "3-1",
-        "picks": [
-          { "pick": "Doble oportunidad 1X (Francia o empate)", "estado": "ACIERTO", "nota": "" },
-          { "pick": "Más de 2.5 goles", "estado": "ACIERTO", "nota": "4 goles en total" },
-          { "pick": "BTTS Sí", "estado": "ACIERTO", "nota": "Ambos anotaron" }
-        ]
-      },
-      {
-        "match_id": "m_irq_nor_16jun",
-        "partido": "Irak vs Noruega",
-        "resultado_real": "1-4",
-        "goleador_destacado": "Erling Haaland (doblete primer tiempo)",
-        "picks": [
-          { "pick": "Victoria Noruega + Más de 2.5 goles", "estado": "ACIERTO", "nota": "" },
-          { "pick": "Más de 3.5 goles", "estado": "ACIERTO", "nota": "5 goles en total" },
-          { "pick": "Erling Haaland anota", "estado": "ACIERTO", "nota": "Doblete" }
-        ]
-      },
-      {
-        "match_id": "m_aut_jor_16jun",
-        "partido": "Austria vs Jordania",
-        "resultado_real": "3-1",
-        "picks": [
-          { "pick": "Doble oportunidad 1X (Austria o empate)", "estado": "ACIERTO", "nota": "" },
-          { "pick": "Austria gana + Más de 1.5 goles", "estado": "ACIERTO", "nota": "" },
-          { "pick": "Menos de 3.5 goles", "estado": "ACIERTO", "nota": "4 goles en total, justo en el límite" }
-        ]
-      }
-    ],
-    "patron_de_error_detectado": {
-      "descripcion": "El factor bloque-contragolpe (+8% al equipo inferior con gap FIFA >30 en MD1) sobreestimó la capacidad de Argelia de mantener un partido cerrado. El modelo no contempló que un desequilibrante histórico de máximo nivel (Messi) puede romper un bloque bajo organizado por sí solo, independientemente de la solidez defensiva del rival.",
-      "evidencia": "Argelia cedió solo 4 goles en 8 partidos de clasificación africana (perfil defensivo sólido) pero recibió 3 goles de un solo jugador en un partido."
-    },
-    "ajuste_modelo_aplicado": {
-      "version_anterior": "v3.0",
-      "version_nueva": "v3.1",
-      "regla_modificada": "factor_bloque_contragolpe",
-      "cambio": "Cuando el equipo favorito cuenta con un jugador de categoria historica/top-3 mundial en racha goleadora reciente (ej. Messi, Mbappe, Haaland), el Under MD1 y el factor bloque-contragolpe se reducen en 15 puntos porcentuales adicionales de probabilidad, ya que estos jugadores pueden desbloquear defensas organizadas de forma individual.",
-      "regla_id": "v3.1_estrella_historica_desbloqueo"
-    }
-  },
-
-  "fecha_partidos": "2026-06-17",
-  "modelo_aplicado": "v3.1",
-
-  "reglas_modelo_activas": [
-    "BTTS eliminado de picks principales (0% historico en picks principales)",
-    "Over 4.5 directo si gap FIFA > 80 posiciones",
-    "Factor bloque-contragolpe: +8% al equipo inferior si gap FIFA > 30 en MD1 (AJUSTADO v3.1: -15pp adicional si el favorito tiene jugador historico/top-3 mundial en racha)",
-    "Under MD1 solo si algun equipo lleva 6+ partidos sin conceder",
-    "Doble Oportunidad como mercado prioritario",
-    "Factor amistosos 0.6x si aplica",
-    "v3.1 NUEVA: Penalizacion de Under/bloque-contragolpe ante desequilibrante historico individual"
-  ],
-
   "picks": [
     {
-      "match_id": "m061",
-      "partido": "Portugal vs RD Congo",
-      "grupo": "K",
-      "hora_local_et": "13:00",
-      "ranking_fifa": { "portugal": 5, "rd_congo": 56, "gap": 51 },
-      "reglas_aplicadas": [
-        "Gap FIFA 51 (no supera 80, no aplica Over 4.5 directo)",
-        "Factor bloque-contragolpe activo (+8% RD Congo, gap > 30)",
-        "RD Congo regresa al Mundial tras 52 anos sin presion de resultado, riesgo de bloque bajo tipo Cabo Verde",
-        "Under MD1 NO aplica (ningun equipo con 6+ partidos sin conceder confirmados)",
-        "BTTS excluido de picks principales"
-      ],
-      "top_picks": [
-        {
-          "rank": 1,
-          "mercado": "Doble Oportunidad",
-          "pick": "Portugal o Empate (1X)",
-          "cuota_estimada": 1.30,
-          "probabilidad_pct": 80,
-          "confianza": "Alta",
-          "justificacion": "Portugal con ventaja de calidad clara (Ronaldo, Bruno Fernandes, Vitinha). RD Congo puede plantear bloque bajo como debutante reciente sin presion, por lo que se prioriza la doble oportunidad sobre la victoria directa."
-        },
-        {
-          "rank": 2,
-          "mercado": "Resultado + Goles combinado",
-          "pick": "Portugal gana y Menos de 3.5 goles",
-          "cuota_estimada": 1.94,
-          "probabilidad_pct": 52,
-          "confianza": "Alta",
-          "justificacion": "Refleja la superioridad de Portugal junto con el enfoque ultra defensivo esperado de RD Congo, lo que reduce el numero total de goles del partido."
-        },
-        {
-          "rank": 3,
-          "mercado": "Hándicap asiático",
-          "pick": "Portugal -1 (hándicap)",
-          "cuota_estimada": 1.85,
-          "probabilidad_pct": 54,
-          "confianza": "Media",
-          "justificacion": "Brecha de nivel moderada-alta (gap 51) con factor bloque-contragolpe parcialmente compensado; el handicap -1 ofrece mejor relacion riesgo/cuota que la victoria directa a secas."
-        }
-      ]
+      "id": "p_hist_001",
+      "partidoId": "m001",
+      "fecha": "2026-06-11",
+      "tipo": "Resultado",
+      "mercado": "Doble Oportunidad",
+      "pick": "México o Empate",
+      "cuota": 1.20,
+      "probabilidad": 87,
+      "confianza": "Alta",
+      "modelo": "v2",
+      "justificacion": "México sede anfitriona, jerarquía clara ante Sudáfrica. Factor sede aplicado.",
+      "resultado": "ACIERTO",
+      "resultado_real": "México 2-0 Sudáfrica"
     },
     {
-      "match_id": "m062",
-      "partido": "Uzbekistán vs Colombia",
-      "grupo": "K",
-      "hora_local_et": "22:00",
-      "ranking_fifa": { "uzbekistan": 50, "colombia": 13, "gap": 37 },
-      "reglas_aplicadas": [
-        "Gap FIFA 37 (no supera 80, no aplica Over 4.5 directo)",
-        "Factor bloque-contragolpe activo (+8% Uzbekistan, gap > 30)",
-        "Uzbekistan en su primer Mundial historico, sin presion de resultado, alto riesgo de bloque bajo",
-        "Under MD1 aplica de forma parcial: Colombia con defensa solida en clasificacion CONMEBOL, sin confirmacion de 6+ partidos sin conceder",
-        "BTTS excluido de picks principales"
-      ],
-      "top_picks": [
-        {
-          "rank": 1,
-          "mercado": "Doble Oportunidad",
-          "pick": "Colombia o Empate (1X)",
-          "cuota_estimada": 1.35,
-          "probabilidad_pct": 78,
-          "confianza": "Alta",
-          "justificacion": "Colombia con plantilla muy superior, pero Uzbekistan en su debut historico puede defenderse en bloque cerrado tipo Cabo Verde. La doble oportunidad protege ante ese escenario."
-        },
-        {
-          "rank": 2,
-          "mercado": "Total de goles",
-          "pick": "Menos de 2.5 goles",
-          "cuota_estimada": 1.95,
-          "probabilidad_pct": 53,
-          "confianza": "Media",
-          "justificacion": "Uzbekistan, dirigido por Fabio Cannavaro, tiende a un bloque defensivo compacto. Colombia puede dominar posesion sin necesariamente romper el cerrojo en el primer partido."
-        },
-        {
-          "rank": 3,
-          "mercado": "Resultado exacto agrupado",
-          "pick": "Colombia gana por margen de 1 gol (1-0 / 2-1)",
-          "cuota_estimada": 3.40,
-          "probabilidad_pct": 30,
-          "confianza": "Media",
-          "justificacion": "El factor bloque-contragolpe sugiere un partido ajustado en el marcador aunque Colombia controle el juego; un margen estrecho es el escenario mas probable de victoria."
-        }
-      ]
+      "id": "p_hist_002",
+      "partidoId": "m001",
+      "fecha": "2026-06-11",
+      "tipo": "Goles",
+      "mercado": "Over 2.5",
+      "pick": "Más de 2.5 goles",
+      "cuota": 1.65,
+      "probabilidad": 62,
+      "confianza": "Media",
+      "modelo": "v2",
+      "justificacion": "México sin bloqueo defensivo esperado vs rival de menor nivel.",
+      "resultado": "FALLO",
+      "resultado_real": "México 2-0 Sudáfrica (2 goles totales, no superó 2.5)"
     },
     {
-      "match_id": "m067",
-      "partido": "Inglaterra vs Croacia",
-      "grupo": "L",
-      "hora_local_et": "16:00",
-      "ranking_fifa": { "inglaterra": 4, "croacia": 11, "gap": 7 },
-      "reglas_aplicadas": [
-        "Gap FIFA 7 (gap menor a 30, factor bloque-contragolpe NO aplica)",
-        "Under MD1 SI aplica: Inglaterra no concedio goles en 8 partidos de clasificacion; Croacia cedio solo 4 goles en 8 partidos de clasificacion",
-        "Doble oportunidad evaluada pero no prioritaria por brecha minima entre ambos equipos",
-        "BTTS excluido de picks principales"
-      ],
-      "top_picks": [
-        {
-          "rank": 1,
-          "mercado": "Total de goles",
-          "pick": "Menos de 2.5 goles",
-          "cuota_estimada": 1.85,
-          "probabilidad_pct": 60,
-          "confianza": "Alta",
-          "justificacion": "Inglaterra fue dominante defensivamente en clasificacion sin conceder goles en 8 partidos, y Croacia tambien mostro solidez con solo 4 goles cedidos en 8 partidos. Cumple estrictamente la regla de Under MD1 (6+ partidos sin conceder)."
-        },
-        {
-          "rank": 2,
-          "mercado": "Doble Oportunidad",
-          "pick": "Inglaterra o Empate (1X)",
-          "cuota_estimada": 1.45,
-          "probabilidad_pct": 70,
-          "confianza": "Alta",
-          "justificacion": "Brecha FIFA minima (7 posiciones) entre dos equipos de elite europea con planteles equilibrados; la doble oportunidad es el mercado mas eficiente dado lo cerrado del partido."
-        },
-        {
-          "rank": 3,
-          "mercado": "Resultado exacto agrupado",
-          "pick": "Empate o victoria por 1 gol de cualquier equipo",
-          "cuota_estimada": 2.10,
-          "probabilidad_pct": 47,
-          "confianza": "Media",
-          "justificacion": "Dos defensas de las mejores del mundo enfrentadas sugieren un partido tactico y ajustado en el marcador, sin necesidad de una goleada de ningun lado."
-        }
-      ]
+      "id": "p_hist_003",
+      "partidoId": "m055",
+      "fecha": "2026-06-16",
+      "tipo": "Resultado",
+      "mercado": "Doble Oportunidad",
+      "pick": "Argentina o Empate",
+      "cuota": 1.18,
+      "probabilidad": 89,
+      "confianza": "Alta",
+      "modelo": "v2",
+      "justificacion": "Argentina campeona del mundo. Argelia gap FIFA >60 posiciones.",
+      "resultado": "ACIERTO",
+      "resultado_real": "Argentina 3-0 Argelia (hat-trick de Messi)"
     },
     {
-      "match_id": "m068",
-      "partido": "Ghana vs Panamá",
-      "grupo": "L",
-      "hora_local_et": "19:00",
-      "ranking_fifa": { "ghana": 73, "panama": 34, "gap": 39 },
-      "reglas_aplicadas": [
-        "Gap FIFA 39 (no supera 80, no aplica Over 4.5 directo)",
-        "Factor bloque-contragolpe activo (+8% Ghana, equipo de menor ranking, gap > 30)",
-        "Under MD1 aplica: Ghana cedio solo 6 goles en 10 partidos de clasificacion CAF; Panama cedio solo 4 goles en 6 partidos de clasificacion CONCACAF",
-        "BTTS excluido de picks principales"
-      ],
-      "top_picks": [
-        {
-          "rank": 1,
-          "mercado": "Total de goles",
-          "pick": "Menos de 2.5 goles",
-          "cuota_estimada": 1.90,
-          "probabilidad_pct": 56,
-          "confianza": "Alta",
-          "justificacion": "Ambos equipos mostraron defensas solidas en clasificacion (Ghana 6 goles cedidos en 10 partidos, Panama 4 en 6), cumpliendo el criterio de Under MD1. Partido entre dos selecciones tecnicamente parejas segun el ranking FIFA ajustado."
-        },
-        {
-          "rank": 2,
-          "mercado": "Doble Oportunidad",
-          "pick": "Ghana o Empate (1X)",
-          "cuota_estimada": 1.75,
-          "probabilidad_pct": 62,
-          "confianza": "Alta",
-          "justificacion": "Pese a tener el ranking FIFA mas bajo de los cuatro partidos de la jornada, Ghana cuenta con mas opciones ofensivas probadas (Inaki Williams, Jordan Ayew, Antoine Semenyo). El factor bloque-contragolpe favorece a Panama en el marcador pero no necesariamente en el resultado final."
-        },
-        {
-          "rank": 3,
-          "mercado": "Doble Oportunidad inversa",
-          "pick": "Panamá o Empate (X2)",
-          "cuota_estimada": 1.95,
-          "probabilidad_pct": 56,
-          "confianza": "Media",
-          "justificacion": "Partido catalogado como el mas parejo de la jornada por las casas de apuestas (cuotas casi simetricas). Sirve como cobertura alternativa al pick principal dado lo ajustado del mercado."
-        }
-      ]
+      "id": "p_hist_004",
+      "partidoId": "m013",
+      "fecha": "2026-06-13",
+      "tipo": "Resultado",
+      "mercado": "Doble Oportunidad",
+      "pick": "Brasil o Empate",
+      "cuota": 1.22,
+      "probabilidad": 85,
+      "confianza": "Alta",
+      "modelo": "v2",
+      "justificacion": "Brasil potencia frente a Marruecos. Factor MD1 táctica cautelosa aplicado.",
+      "resultado": "ACIERTO",
+      "resultado_real": "Brasil 1-1 Marruecos"
+    },
+    {
+      "id": "p_hist_005",
+      "partidoId": "m043",
+      "fecha": "2026-06-15",
+      "tipo": "Resultado",
+      "mercado": "Victoria local",
+      "pick": "España gana",
+      "cuota": 1.35,
+      "probabilidad": 78,
+      "confianza": "Alta",
+      "modelo": "v2",
+      "justificacion": "España top 5 FIFA vs Cabo Verde. Diferencia clara de nivel estructural.",
+      "resultado": "FALLO",
+      "resultado_real": "España 0-0 Cabo Verde (batacazo histórico, España no ganó ni anotó)"
+    },
+    {
+      "id": "p_hist_006",
+      "partidoId": "m049",
+      "fecha": "2026-06-16",
+      "tipo": "Resultado",
+      "mercado": "Doble Oportunidad",
+      "pick": "Francia o Empate",
+      "cuota": 1.25,
+      "probabilidad": 82,
+      "confianza": "Alta",
+      "modelo": "v2",
+      "justificacion": "Francia favorita clara del Grupo I frente a Senegal.",
+      "resultado": "ACIERTO",
+      "resultado_real": "Francia 3-1 Senegal (Mbappé y Barcola)"
+    },
+    {
+      "id": "p_hist_007",
+      "partidoId": "m025",
+      "fecha": "2026-06-14",
+      "tipo": "Resultado",
+      "mercado": "Doble Oportunidad",
+      "pick": "Alemania o Empate",
+      "cuota": 1.30,
+      "probabilidad": 80,
+      "confianza": "Alta",
+      "modelo": "v2",
+      "justificacion": "Alemania vs Curazao, gap FIFA enorme. Favorito estructural.",
+      "resultado": "ACIERTO",
+      "resultado_real": "Alemania 7-1 Curazao"
+    },
+    {
+      "id": "p_hist_008",
+      "partidoId": "m037",
+      "fecha": "2026-06-15",
+      "tipo": "Resultado",
+      "mercado": "Doble Oportunidad",
+      "pick": "Bélgica o Empate",
+      "cuota": 1.35,
+      "probabilidad": 77,
+      "confianza": "Alta",
+      "modelo": "v3",
+      "justificacion": "Bélgica favorita ante Egipto. Gap FIFA >40 posiciones.",
+      "resultado": "ACIERTO",
+      "resultado_real": "Bélgica 1-1 Egipto (Salah forzó el empate)"
+    },
+    {
+      "id": "p_hist_009",
+      "partidoId": "m037",
+      "fecha": "2026-06-15",
+      "tipo": "Goles",
+      "mercado": "Under 2.5",
+      "pick": "Menos de 2.5 goles",
+      "cuota": 1.80,
+      "probabilidad": 65,
+      "confianza": "Media",
+      "modelo": "v3",
+      "justificacion": "MD1 táctica cautelosa. Bélgica preferirá no arriesgar en debut.",
+      "resultado": "ACIERTO",
+      "resultado_real": "Bélgica 1-1 Egipto (2 goles totales)"
+    },
+    {
+      "id": "p_hist_010",
+      "partidoId": "m044",
+      "fecha": "2026-06-15",
+      "tipo": "Resultado",
+      "mercado": "Doble Oportunidad",
+      "pick": "Uruguay o Empate",
+      "cuota": 1.38,
+      "probabilidad": 76,
+      "confianza": "Alta",
+      "modelo": "v3",
+      "justificacion": "Uruguay solidez histórica en MD1. Arabia Saudita inconsistente.",
+      "resultado": "ACIERTO",
+      "resultado_real": "Arabia Saudita 1-1 Uruguay (Maxi Araújo igualó al 80')"
+    },
+    {
+      "id": "p_hist_011",
+      "partidoId": "m044",
+      "fecha": "2026-06-15",
+      "tipo": "Goles",
+      "mercado": "Under 2.5",
+      "pick": "Menos de 2.5 goles",
+      "cuota": 1.75,
+      "probabilidad": 63,
+      "confianza": "Media",
+      "modelo": "v3",
+      "justificacion": "Uruguay defensa histórica cerrada en MD1.",
+      "resultado": "ACIERTO",
+      "resultado_real": "Arabia Saudita 1-1 Uruguay (2 goles totales)"
+    },
+    {
+      "id": "p_hist_012",
+      "partidoId": "m025",
+      "fecha": "2026-06-14",
+      "tipo": "Goles",
+      "mercado": "Over 4.5",
+      "pick": "Más de 4.5 goles",
+      "cuota": 3.20,
+      "probabilidad": 38,
+      "confianza": "Media",
+      "modelo": "v3",
+      "justificacion": "Gap FIFA >80 (Alemania vs Curazao) activa Over 4.5 directo por modelo v3.",
+      "resultado": "ACIERTO",
+      "resultado_real": "Alemania 7-1 Curazao (8 goles totales)"
+    },
+    {
+      "id": "p_hist_013",
+      "partidoId": "m007",
+      "fecha": "2026-06-12",
+      "tipo": "Resultado",
+      "mercado": "Doble Oportunidad",
+      "pick": "Canadá o Empate",
+      "cuota": 1.35,
+      "probabilidad": 78,
+      "confianza": "Alta",
+      "modelo": "v3",
+      "justificacion": "Canadá sede anfitriona y clasificó fuerte. Bosnia debut en mundial.",
+      "resultado": "ACIERTO",
+      "resultado_real": "Canadá 1-1 Bosnia y Herzegovina"
+    },
+    {
+      "id": "p_hist_014",
+      "partidoId": "m038",
+      "fecha": "2026-06-15",
+      "tipo": "Resultado",
+      "mercado": "Doble Oportunidad",
+      "pick": "Irán o Empate",
+      "cuota": 1.50,
+      "probabilidad": 66,
+      "confianza": "Media",
+      "modelo": "v3",
+      "justificacion": "Factor bloque-contragolpe +8% Irán. Nueva Zelanda debutante a este nivel.",
+      "resultado": "ACIERTO",
+      "resultado_real": "Irán 2-2 Nueva Zelanda"
+    },
+    {
+      "id": "p_hist_015",
+      "partidoId": "m050",
+      "fecha": "2026-06-16",
+      "tipo": "Resultado",
+      "mercado": "Doble Oportunidad",
+      "pick": "Noruega o Empate",
+      "cuota": 1.30,
+      "probabilidad": 80,
+      "confianza": "Alta",
+      "modelo": "v3",
+      "justificacion": "Noruega con Haaland, favorita clara del Grupo I vs Irak.",
+      "resultado": "ACIERTO",
+      "resultado_real": "Noruega 4-1 Irak (doblete de Haaland)"
+    },
+    {
+      "id": "p_hist_016",
+      "partidoId": "m056",
+      "fecha": "2026-06-16",
+      "tipo": "Resultado",
+      "mercado": "Doble Oportunidad",
+      "pick": "Austria o Empate",
+      "cuota": 1.45,
+      "probabilidad": 67,
+      "confianza": "Media",
+      "modelo": "v3",
+      "justificacion": "Austria superior a Jordania en ranking FIFA. Partido equilibrado esperado.",
+      "resultado": "ACIERTO",
+      "resultado_real": "Austria 3-1 Jordania"
+    },
+    {
+      "id": "p_hist_017",
+      "partidoId": "m019",
+      "fecha": "2026-06-12",
+      "tipo": "Resultado",
+      "mercado": "Doble Oportunidad",
+      "pick": "Estados Unidos o Empate",
+      "cuota": 1.28,
+      "probabilidad": 81,
+      "confianza": "Alta",
+      "modelo": "v3",
+      "justificacion": "Estados Unidos sede anfitriona + plaza fuerte del Grupo D vs Paraguay.",
+      "resultado": "ACIERTO",
+      "resultado_real": "Estados Unidos 4-1 Paraguay"
+    },
+    {
+      "id": "p_hist_018",
+      "partidoId": "m031",
+      "fecha": "2026-06-14",
+      "tipo": "Resultado",
+      "mercado": "Doble Oportunidad",
+      "pick": "Países Bajos o Empate",
+      "cuota": 1.28,
+      "probabilidad": 81,
+      "confianza": "Alta",
+      "modelo": "v3",
+      "justificacion": "Países Bajos clasificó fuerte en Europa. Japón sólido pero con gap.",
+      "resultado": "ACIERTO",
+      "resultado_real": "Países Bajos 2-2 Japón"
+    },
+    {
+      "id": "p_hist_019",
+      "partidoId": "m043",
+      "fecha": "2026-06-15",
+      "tipo": "Resultado",
+      "mercado": "Doble Oportunidad",
+      "pick": "España o Empate",
+      "cuota": 1.22,
+      "probabilidad": 84,
+      "confianza": "Alta",
+      "modelo": "v3",
+      "justificacion": "España gap FIFA >80 vs Cabo Verde. Favorito estructural claro.",
+      "resultado": "ACIERTO",
+      "resultado_real": "España 0-0 Cabo Verde (empate cubre la doble oportunidad)"
+    },
+    {
+      "id": "p_hist_020",
+      "partidoId": "m055",
+      "fecha": "2026-06-16",
+      "tipo": "Resultado",
+      "mercado": "Doble Oportunidad",
+      "pick": "Argentina o Empate",
+      "cuota": 1.20,
+      "probabilidad": 87,
+      "confianza": "Alta",
+      "modelo": "v3",
+      "justificacion": "Argentina campeona. MD1 cautela táctica pero no afecta doble oportunidad.",
+      "resultado": "ACIERTO",
+      "resultado_real": "Argentina 3-0 Argelia"
+    },
+    {
+      "id": "p_m061_001",
+      "partidoId": "m061",
+      "fecha": "2026-06-17",
+      "tipo": "Resultado",
+      "mercado": "Doble Oportunidad",
+      "pick": "Portugal o Empate (1X)",
+      "cuota": 1.30,
+      "probabilidad": 80,
+      "confianza": "Alta",
+      "modelo": "v3.1",
+      "justificacion": "Portugal con ventaja de calidad clara (Ronaldo, Bruno Fernandes, Vitinha). RD Congo puede plantear bloque bajo de debutante reciente, por lo que se prioriza la doble oportunidad sobre la victoria directa.",
+      "resultado": null,
+      "resultado_real": null
+    },
+    {
+      "id": "p_m061_002",
+      "partidoId": "m061",
+      "fecha": "2026-06-17",
+      "tipo": "Resultado + Goles",
+      "mercado": "Resultado + Goles combinado",
+      "pick": "Portugal gana y Menos de 3.5 goles",
+      "cuota": 1.94,
+      "probabilidad": 52,
+      "confianza": "Alta",
+      "modelo": "v3.1",
+      "justificacion": "Refleja la superioridad de Portugal junto con el enfoque ultra defensivo esperado de RD Congo, lo que reduce el número total de goles del partido.",
+      "resultado": null,
+      "resultado_real": null
+    },
+    {
+      "id": "p_m061_003",
+      "partidoId": "m061",
+      "fecha": "2026-06-17",
+      "tipo": "Hándicap",
+      "mercado": "Hándicap asiático",
+      "pick": "Portugal -1 (hándicap)",
+      "cuota": 1.85,
+      "probabilidad": 54,
+      "confianza": "Media",
+      "modelo": "v3.1",
+      "justificacion": "Brecha de nivel moderada-alta (gap 51) con factor bloque-contragolpe parcialmente compensado; el hándicap -1 ofrece mejor relación riesgo/cuota que la victoria directa a secas.",
+      "resultado": null,
+      "resultado_real": null
+    },
+    {
+      "id": "p_m062_001",
+      "partidoId": "m062",
+      "fecha": "2026-06-17",
+      "tipo": "Resultado",
+      "mercado": "Doble Oportunidad",
+      "pick": "Colombia o Empate (1X)",
+      "cuota": 1.35,
+      "probabilidad": 78,
+      "confianza": "Alta",
+      "modelo": "v3.1",
+      "justificacion": "Colombia con plantilla muy superior, pero Uzbekistán en su debut histórico puede defenderse en bloque cerrado tipo Cabo Verde. La doble oportunidad protege ante ese escenario.",
+      "resultado": null,
+      "resultado_real": null
+    },
+    {
+      "id": "p_m062_002",
+      "partidoId": "m062",
+      "fecha": "2026-06-17",
+      "tipo": "Goles",
+      "mercado": "Total de goles",
+      "pick": "Menos de 2.5 goles",
+      "cuota": 1.95,
+      "probabilidad": 53,
+      "confianza": "Media",
+      "modelo": "v3.1",
+      "justificacion": "Uzbekistán, dirigido por Fabio Cannavaro, tiende a un bloque defensivo compacto. Colombia puede dominar posesión sin necesariamente romper el cerrojo en el primer partido.",
+      "resultado": null,
+      "resultado_real": null
+    },
+    {
+      "id": "p_m062_003",
+      "partidoId": "m062",
+      "fecha": "2026-06-17",
+      "tipo": "Resultado exacto",
+      "mercado": "Resultado exacto agrupado",
+      "pick": "Colombia gana por margen de 1 gol (1-0 / 2-1)",
+      "cuota": 3.40,
+      "probabilidad": 30,
+      "confianza": "Media",
+      "modelo": "v3.1",
+      "justificacion": "El factor bloque-contragolpe sugiere un partido ajustado en el marcador aunque Colombia controle el juego; un margen estrecho es el escenario más probable de victoria.",
+      "resultado": null,
+      "resultado_real": null
+    },
+    {
+      "id": "p_m067_001",
+      "partidoId": "m067",
+      "fecha": "2026-06-17",
+      "tipo": "Goles",
+      "mercado": "Total de goles",
+      "pick": "Menos de 2.5 goles",
+      "cuota": 1.85,
+      "probabilidad": 60,
+      "confianza": "Alta",
+      "modelo": "v3.1",
+      "justificacion": "Inglaterra fue dominante defensivamente en clasificación sin conceder goles en 8 partidos, y Croacia también mostró solidez con solo 4 goles cedidos en 8 partidos. Cumple estrictamente la regla de Under MD1 (6+ partidos sin conceder).",
+      "resultado": null,
+      "resultado_real": null
+    },
+    {
+      "id": "p_m067_002",
+      "partidoId": "m067",
+      "fecha": "2026-06-17",
+      "tipo": "Resultado",
+      "mercado": "Doble Oportunidad",
+      "pick": "Inglaterra o Empate (1X)",
+      "cuota": 1.45,
+      "probabilidad": 70,
+      "confianza": "Alta",
+      "modelo": "v3.1",
+      "justificacion": "Brecha FIFA mínima (7 posiciones) entre dos equipos de élite europea con planteles equilibrados; la doble oportunidad es el mercado más eficiente dado lo cerrado del partido.",
+      "resultado": null,
+      "resultado_real": null
+    },
+    {
+      "id": "p_m067_003",
+      "partidoId": "m067",
+      "fecha": "2026-06-17",
+      "tipo": "Resultado exacto",
+      "mercado": "Resultado exacto agrupado",
+      "pick": "Empate o victoria por 1 gol de cualquier equipo",
+      "cuota": 2.10,
+      "probabilidad": 47,
+      "confianza": "Media",
+      "modelo": "v3.1",
+      "justificacion": "Dos defensas de las mejores del mundo enfrentadas sugieren un partido táctico y ajustado en el marcador, sin necesidad de una goleada de ningún lado.",
+      "resultado": null,
+      "resultado_real": null
+    },
+    {
+      "id": "p_m068_001",
+      "partidoId": "m068",
+      "fecha": "2026-06-17",
+      "tipo": "Goles",
+      "mercado": "Total de goles",
+      "pick": "Menos de 2.5 goles",
+      "cuota": 1.90,
+      "probabilidad": 56,
+      "confianza": "Alta",
+      "modelo": "v3.1",
+      "justificacion": "Ambos equipos mostraron defensas sólidas en clasificación (Ghana 6 goles cedidos en 10 partidos, Panamá 4 en 6), cumpliendo el criterio de Under MD1. Partido entre dos selecciones técnicamente parejas según el ranking FIFA ajustado.",
+      "resultado": null,
+      "resultado_real": null
+    },
+    {
+      "id": "p_m068_002",
+      "partidoId": "m068",
+      "fecha": "2026-06-17",
+      "tipo": "Resultado",
+      "mercado": "Doble Oportunidad",
+      "pick": "Ghana o Empate (1X)",
+      "cuota": 1.75,
+      "probabilidad": 62,
+      "confianza": "Alta",
+      "modelo": "v3.1",
+      "justificacion": "Pese a tener el ranking FIFA más bajo de los cuatro partidos de la jornada, Ghana cuenta con más opciones ofensivas probadas (Iñaki Williams, Jordan Ayew, Antoine Semenyo). El factor bloque-contragolpe favorece a Panamá en el marcador pero no necesariamente en el resultado final.",
+      "resultado": null,
+      "resultado_real": null
+    },
+    {
+      "id": "p_m068_003",
+      "partidoId": "m068",
+      "fecha": "2026-06-17",
+      "tipo": "Resultado",
+      "mercado": "Doble Oportunidad inversa",
+      "pick": "Panamá o Empate (X2)",
+      "cuota": 1.95,
+      "probabilidad": 56,
+      "confianza": "Media",
+      "modelo": "v3.1",
+      "justificacion": "Partido catalogado como el más parejo de la jornada por las casas de apuestas (cuotas casi simétricas). Sirve como cobertura alternativa al pick principal dado lo ajustado del mercado.",
+      "resultado": null,
+      "resultado_real": null
     }
   ],
-
   "combinadas": [
     {
-      "tipo": "conservadora",
-      "nombre": "Combinada Conservadora — Doble Oportunidad y Unders",
-      "patas": [
-        { "match_id": "m061", "pick": "Portugal o Empate (1X)", "cuota": 1.30 },
-        { "match_id": "m067", "pick": "Menos de 2.5 goles (Inglaterra vs Croacia)", "cuota": 1.85 },
-        { "match_id": "m068", "pick": "Menos de 2.5 goles (Ghana vs Panamá)", "cuota": 1.90 }
-      ],
-      "cuota_combinada_estimada": 4.57,
-      "probabilidad_estimada_pct": 26,
-      "logica": "Tres mercados con respaldo estadistico solido y sin dependencia de un solo jugador estrella. Doble oportunidad en el partido de mayor brecha de nivel, y dos Unders en partidos con perfiles defensivos confirmados en clasificacion."
+      "id": "c_hist_001",
+      "fecha": "2026-06-15",
+      "tipo": "Conservadora",
+      "riesgo": "Bajo",
+      "cuotaCombinada": 2.38,
+      "descripcion": "Bélgica/Empate + España/Empate + Uruguay/Empate — histórico 15 jun",
+      "picks": ["p_hist_008", "p_hist_019", "p_hist_010"],
+      "resultado": "ACIERTO",
+      "resultado_real": "Las 3 patas acertaron (Bélgica 1-1, España 0-0, Uruguay 1-1)"
     },
     {
-      "tipo": "equilibrada",
-      "nombre": "Combinada Equilibrada — Mixta",
-      "patas": [
-        { "match_id": "m062", "pick": "Colombia o Empate (1X)", "cuota": 1.35 },
-        { "match_id": "m067", "pick": "Inglaterra o Empate (1X)", "cuota": 1.45 },
-        { "match_id": "m061", "pick": "Portugal gana y Menos de 3.5 goles", "cuota": 1.94 }
-      ],
-      "cuota_combinada_estimada": 3.79,
-      "probabilidad_estimada_pct": 31,
-      "logica": "Combina dos dobles oportunidades de alta probabilidad con un mercado de resultado+goles en el partido de mayor diferencia de nivel del dia, equilibrando seguridad con algo mas de cuota."
+      "id": "c_hist_002",
+      "fecha": "2026-06-15",
+      "tipo": "Equilibrada",
+      "riesgo": "Medio",
+      "cuotaCombinada": 3.91,
+      "descripcion": "4 doble oportunidad MD1 — máximo historial de acierto",
+      "picks": ["p_hist_008", "p_hist_010", "p_hist_014", "p_hist_019"],
+      "resultado": "ACIERTO",
+      "resultado_real": "Las 4 patas acertaron"
     },
     {
-      "tipo": "agresiva",
-      "nombre": "Combinada Agresiva — Valor de cuota",
-      "patas": [
-        { "match_id": "m062", "pick": "Colombia gana por margen de 1 gol", "cuota": 3.40 },
-        { "match_id": "m068", "pick": "Ghana o Empate (1X)", "cuota": 1.75 },
-        { "match_id": "m061", "pick": "Portugal -1 (hándicap)", "cuota": 1.85 }
-      ],
-      "cuota_combinada_estimada": 11.01,
-      "probabilidad_estimada_pct": 10,
-      "logica": "Busca mayor retorno apostando a un resultado especifico de margen ajustado en Uzbekistan-Colombia, combinado con dos picks de probabilidad media-alta en los otros partidos. Cuota elevada para perfil de riesgo mas alto."
+      "id": "c_hist_003",
+      "fecha": "2026-06-15",
+      "tipo": "Agresiva",
+      "riesgo": "Alto",
+      "cuotaCombinada": 8.66,
+      "descripcion": "España/Empate + Uruguay/Empate + Over 4.5 Alemania",
+      "picks": ["p_hist_019", "p_hist_010", "p_hist_012"],
+      "resultado": "ACIERTO",
+      "resultado_real": "Las 3 patas acertaron (Alemania 7-1, España 0-0, Uruguay 1-1)"
+    },
+    {
+      "id": "c_hist_004",
+      "fecha": "2026-06-16",
+      "tipo": "Conservadora",
+      "riesgo": "Bajo",
+      "cuotaCombinada": 1.98,
+      "descripcion": "Francia/Empate + Noruega/Empate — histórico 16 jun",
+      "picks": ["p_hist_006", "p_hist_015"],
+      "resultado": "ACIERTO",
+      "resultado_real": "Francia 3-1 Senegal, Noruega 4-1 Irak"
+    },
+    {
+      "id": "c_hist_005",
+      "fecha": "2026-06-16",
+      "tipo": "Equilibrada",
+      "riesgo": "Medio",
+      "cuotaCombinada": 2.88,
+      "descripcion": "Francia/Empate + Argentina/Empate + Noruega/Empate",
+      "picks": ["p_hist_006", "p_hist_020", "p_hist_015"],
+      "resultado": "ACIERTO",
+      "resultado_real": "Las 3 patas acertaron"
+    },
+    {
+      "id": "c_m17_001",
+      "fecha": "2026-06-17",
+      "tipo": "Conservadora",
+      "riesgo": "Bajo",
+      "cuotaCombinada": 4.57,
+      "descripcion": "Portugal/Empate + Under 2.5 Inglaterra-Croacia + Under 2.5 Ghana-Panamá",
+      "picks": ["p_m061_001", "p_m067_001", "p_m068_001"],
+      "resultado": null,
+      "resultado_real": null
+    },
+    {
+      "id": "c_m17_002",
+      "fecha": "2026-06-17",
+      "tipo": "Equilibrada",
+      "riesgo": "Medio",
+      "cuotaCombinada": 3.79,
+      "descripcion": "Colombia/Empate + Inglaterra/Empate + Portugal gana y Under 3.5",
+      "picks": ["p_m062_001", "p_m067_002", "p_m061_002"],
+      "resultado": null,
+      "resultado_real": null
+    },
+    {
+      "id": "c_m17_003",
+      "fecha": "2026-06-17",
+      "tipo": "Agresiva",
+      "riesgo": "Alto",
+      "cuotaCombinada": 11.01,
+      "descripcion": "Colombia gana por margen de 1 gol + Ghana/Empate + Portugal -1 hándicap",
+      "picks": ["p_m062_003", "p_m068_002", "p_m061_003"],
+      "resultado": null,
+      "resultado_real": null
     }
-  ],
-
-  "disclaimer": "Cuotas estimadas a partir de consenso de mercado al 16-17 de junio de 2026. Verificar cuotas actualizadas en el operador antes de publicar o apostar. Este contenido representa analisis probabilistico, no garantiza resultados. Apuesta con responsabilidad."
+  ]
 }
